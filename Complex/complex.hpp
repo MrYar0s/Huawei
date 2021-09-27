@@ -1,6 +1,3 @@
-#include <cmath>
-#include <iostream>
-
 struct complex
 {
 	double re;

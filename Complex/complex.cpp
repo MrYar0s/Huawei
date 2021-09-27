@@ -1,4 +1,6 @@
 #include "complex.hpp"
+#include <cmath>
+#include <iostream>
 
 complex::complex() : re(0), im(0) {}
 complex::complex (double num) : re(num), im(0) {}
