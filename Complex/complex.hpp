@@ -12,7 +12,7 @@ struct complex
 	complex operator+(complex &cmp);
 	complex operator-(complex &cmp);
 	complex operator*(complex &cmp);
-	friend complex operator^(complex &cmp, double degree);
+	complex operator^(double degree);
 
 	void print_num();
 	void pair();

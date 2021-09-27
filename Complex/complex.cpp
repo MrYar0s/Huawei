@@ -37,16 +37,17 @@ complex complex::operator*(complex &cmp)
 	return {re*cmp.re - im*cmp.im, re*cmp.im + im*cmp.re};
 }
 
-complex operator^(complex &cmp, double degree)
+complex complex::operator^(double degree)
 {
-	double r = std::sqrt((cmp.re)*(cmp.re) + (cmp.im)*(cmp.im));
-	double arg = std::atan((double)cmp.im/(double)cmp.re);
+	complex z;
+	double r = std::sqrt(re*re + im*im);
+	double arg = std::atan(im/re);
 	double dr = std::pow(r, degree);
 	double cos = std::cos(degree * arg);
 	double sin = std::sin(degree * arg);
-	double re = (double) (cos*dr);
-	double im = (double) (sin*dr);
-	return {re, im};
+	z.re = (double) (cos*dr);
+	z.im = (double) (sin*dr);
+	return z;
 }
 
 void complex::print_num()
