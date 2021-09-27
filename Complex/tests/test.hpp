@@ -12,7 +12,6 @@ void void_init_test();
 void init_test();
 void copy_init_test();
 void plus_test();
-void plus_test_num();
 void sub_test();
 void num_init_test();
 void pair_test();

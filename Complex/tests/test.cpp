@@ -29,13 +29,9 @@ void plus_test()
 	assert(c.re == a.re+b.re && c.im == a.im+b.im);
 	assert(a.re == ar && a.im == ai);
 	assert(b.re == br && b.im == bi);
-}
 
-void plus_test_num()
-{
-	complex a(ar, ai);
-	complex c = a + 4;
-	assert(c.re == a.re+4);
+	complex d = 4 + a;
+	assert(d.re == a.re+4 && d.im == a.im);
 }
 
 void sub_test()
@@ -43,7 +39,9 @@ void sub_test()
 	complex a(ar, ai);
 	complex b(br, bi);
 	complex d = a - b;
+	complex c = a - 3;
 	assert(d.re == a.re-b.re && d.im == a.im-b.im);
+	assert(c.re == a.re - 3 && c.im == a.im);
 }
 
 void num_init_test()
@@ -67,6 +65,10 @@ void mult_test()
 	complex mult = a * b;
 	assert(a.re*b.re - a.im*b.im == mult.re);
 	assert(a.re*b.im + a.im*b.re == mult.im);
+
+	complex c = 3 * a;
+	assert(3*a.re == c.re);
+	assert(3*a.im == c.im);
 }
 
 void pow_test()
@@ -116,6 +118,22 @@ void div_test()
 	complex numer = a * paired;
 	assert(c.re == numer.re/denom);
 	assert(c.im == numer.im/denom);
+
+	complex d = 1/b;
+	paired = b.pair();
+	real = b * paired;
+	denom = real.re;
+	numer = 1 * paired;
+	assert(d.re == numer.re/denom);
+	assert(d.im == numer.im/denom);
+
+	complex e = a/5;
+	paired = 5;
+	real = 5 * paired;
+	denom = real.re;
+	numer = a * paired;
+	assert(e.re == numer.re/denom);
+	assert(e.im == numer.im/denom);
 }
 
 void plus_eq_test()

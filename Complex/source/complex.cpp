@@ -9,6 +9,7 @@ complex::complex (double num) :
 complex::complex(double real, double imag) :
 	re(real), im(imag) {}
 
+
 complex::complex(complex const &num) :
 	re(num.re), im(num.im) {}
 
@@ -21,37 +22,37 @@ complex complex::operator=(complex const &cmp)
 	return *this;
 }
 
-complex complex::operator+(complex const &cmp) const
+complex operator+(complex const &cmp1, complex const &cmp2)
 {
 	complex z;
-	z.re = re + cmp.re;
-	z.im = im + cmp.im;
+	z.re = cmp1.re + cmp2.re;
+	z.im = cmp1.im + cmp2.im;
 	return z;
 }
 
-complex complex::operator-(complex const &cmp) const
+complex operator-(complex const &cmp1, complex const &cmp2)
 {
 	complex z;
-	z.re = re - cmp.re;
-	z.im = im - cmp.im;
+	z.re = cmp1.re - cmp2.re;
+	z.im = cmp1.im - cmp2.im;
 	return z;
 }
 
-complex complex::operator*(complex const &cmp) const
+complex operator*(complex const &cmp1, complex const &cmp2)
 {
 	complex z;
-	z.re = re*cmp.re - im*cmp.im;
-	z.im = re*cmp.im + im*cmp.re;
+	z.re = cmp1.re*cmp2.re - cmp1.im*cmp2.im;
+	z.im = cmp1.re*cmp2.im + cmp1.im*cmp2.re;
 	return z;
 }
 
-complex complex::operator/(complex const &cmp) const
+complex operator/(complex const &cmp1, complex const &cmp2)
 {
 	complex z;
-	complex paired = cmp.pair();
-	complex real = cmp * paired;
+	complex paired = cmp2.pair();
+	complex real = cmp2 * paired;
 	double denom = real.re;
-	complex numer = *this * paired;
+	complex numer = cmp1 * paired;
 	z.re = numer.re/denom;
 	z.im = numer.im/denom;
 	return z;
@@ -103,26 +104,6 @@ complex & complex::operator+()
 	return *this;
 }
 
-complex complex::operator^(double degree) const
-{
-	complex z;
-	double r = std::sqrt(re*re + im*im);
-	double arg = std::atan(im/re);
-	double dr = std::pow(r, degree);
-	double cos = std::cos(degree * arg);
-	double sin = std::sqrt(1 - cos*cos);
-	z.re = (double) (cos*dr);
-	z.im = (double) (sin*dr);
-	return z;
-}
-
-complex complex::pair() const
-{
-	complex z;
-	z.im = im * (-1);
-	z.re = re;
-	return z;
-}
 
 bool complex::operator==(complex const &cmp)
 {
@@ -147,6 +128,27 @@ void complex::print_num()
 	else
 		std::cout << im;
 	std::cout << '\n';
+}
+
+complex complex::operator^(double degree) const
+{
+	complex z;
+	double r = std::sqrt(re*re + im*im);
+	double arg = std::atan(im/re);
+	double dr = std::pow(r, degree);
+	double cos = std::cos(degree * arg);
+	double sin = std::sqrt(1 - cos*cos);
+	z.re = (double) (cos*dr);
+	z.im = (double) (sin*dr);
+	return z;
+}
+
+complex complex::pair() const
+{
+	complex z;
+	z.im = im * (-1);
+	z.re = re;
+	return z;
 }
 
 double complex::mod()

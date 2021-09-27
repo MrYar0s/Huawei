@@ -16,10 +16,10 @@ struct complex
 	~complex();
 
 	complex operator=(complex const &cmp);
-	complex operator+(complex const &cmp) const;
-	complex operator-(complex const &cmp) const;
-	complex operator*(complex const &cmp) const;
-	complex operator/(complex const &cmp) const;
+	friend complex operator+(complex const &cmp1, complex const &cmp2);
+	friend complex operator-(complex const &cmp1, complex const &cmp2);
+	friend complex operator*(complex const &cmp1, complex const &cmp2);
+	friend complex operator/(complex const &cmp1, complex const &cmp2);
 
 	complex & operator+=(complex const &cmp);
 	complex & operator-=(complex const &cmp);
@@ -29,11 +29,11 @@ struct complex
 	complex & operator-();
 	complex & operator+();
 
-	complex operator^(double degree) const;
-	complex pair() const;
-
 	bool operator==(complex const &cmp);
 	bool operator!=(complex const &cmp);
+
+	complex operator^(double degree) const;
+	complex pair() const;
 
 	void print_num();
 	double mod();

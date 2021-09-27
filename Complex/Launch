@@ -1,2 +1,18 @@
-all:
-	g++ tests/test.cpp source/complex.cpp -o test -Wall
+CXX = g++
+TARGET = test
+
+.PHONY: all install uninstall
+
+all: $(TARGET)
+clean:
+			rm -rf *.o
+test.o: tests/test.cpp
+			$(CXX) -c -o test.o tests/test.cpp
+complex.o: source/complex.cpp
+			$(CXX) -c -o complex.o source/complex.cpp
+$(TARGET): test.o complex.o
+			$(CXX) -o $(TARGET) test.o complex.o
+install:
+			install $(TARGET)
+uninstall:
+			rm -rf $(TARGET)

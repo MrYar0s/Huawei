@@ -18,7 +18,7 @@ int main(){
     for (int i = 0; i < 40; ++i)
         stk.push(i);
     //pop_test(&stk);
-    Stack<int> stki;
+    Stack<int> stki(10);
     stki = stk;
     stk.print();
     stki.print();
