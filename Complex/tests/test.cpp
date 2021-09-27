@@ -1,10 +1,5 @@
 #include <cassert>
-#include "complex.hpp"
-
-const double ai = 7.3;
-const double ar = -4.5;
-const double br = -0.6;
-const double bi = 11.3;
+#include "test.hpp"
 
 void void_init_test()
 {

@@ -1,4 +1,4 @@
-#include "complex.hpp"
+#include "../include/complex.hpp"
 
 complex::complex() :
 	re(0), im(0) {}

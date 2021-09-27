@@ -1,3 +1,6 @@
+#ifndef COMPLEX_HPP
+#define COMPLEX_HPP
+
 #include <cmath>
 #include <iostream>
 
@@ -36,3 +39,4 @@ struct complex
 	double mod();
 	double arg();
 };
+#endif

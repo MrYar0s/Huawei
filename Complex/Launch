@@ -1,2 +1,2 @@
 all:
-	g++ main.cpp complex.cpp -o main -Wall
+	g++ tests/test.cpp source/complex.cpp -o test -Wall
