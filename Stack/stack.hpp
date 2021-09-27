@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cassert>
-#include <stdlib.h>
+#include <cstdlib>
 
 #define START_SIZE 20
 
@@ -14,21 +14,21 @@ struct Stack
 
 	Stack()
 	{
-		data = (T*) calloc(START_SIZE, sizeof(T));
+		data = (T*) std::calloc(START_SIZE, sizeof(T));
 		max_size = START_SIZE;
 		min_size = 0;
 		cur_size = 0;
 	}
 	Stack(int size)
 	{
-		data = (T*) calloc(START_SIZE, sizeof(T));
+		data = (T*) std::calloc(START_SIZE, sizeof(T));
 		max_size = size;
 		min_size = 0;
 		cur_size = 0;
 	}
 	Stack(Stack const& stk)
 	{
-		data = (T*)calloc(stk.max_size, sizeof(T));
+		data = (T*) std::calloc(stk.max_size, sizeof(T));
 		max_size = stk.max_size;
 		for (int i = 0; i < stk.cur_size; i++)
 		{
@@ -39,7 +39,7 @@ struct Stack
 
 	~Stack()
 	{
-		free(data);
+		std::free(data);
 		max_size = 0;
 		min_size = 0;
 		cur_size = 0;
@@ -53,7 +53,7 @@ struct Stack
 			min_size = (max_size*3)/4;
 			max_size = max_size*2;
 
-			data = (T*)realloc(data, sizeof(T) * max_size);
+			data = (T*) std::realloc(data, sizeof(T) * max_size);
 		}
 		data[cur_size - 1] = n;
 	}
@@ -68,7 +68,7 @@ struct Stack
 			max_size /= 2;
 			min_size /= 2;
 
-			data = (T*)realloc(data, sizeof(T) * max_size);
+			data = (T*) std::realloc(data, sizeof(T) * max_size);
 		}
 
 		T n = data[cur_size];
@@ -93,7 +93,7 @@ struct Stack
 
 	Stack & operator= (Stack const & stk)
 	{
-		data = (T*)calloc(stk.max_size, sizeof(T));
+		data = (T*) std::calloc(stk.max_size, sizeof(T));
 		max_size = stk.max_size;
 		min_size = stk.min_size;
 		for (int i = 0; i < stk.cur_size; i++)

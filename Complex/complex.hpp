@@ -1,3 +1,6 @@
+#include <cmath>
+#include <iostream>
+
 struct complex
 {
 	double re;
@@ -7,15 +10,29 @@ struct complex
 	complex(double num);
 	complex(double real, double imag);
 	complex(complex const &num);
+	~complex();
 
-	complex operator=(complex const &num);
-	complex operator+(complex &cmp);
-	complex operator-(complex &cmp);
-	complex operator*(complex &cmp);
-	complex operator^(double degree);
+	complex operator=(complex const &cmp);
+	complex operator+(complex const &cmp) const;
+	complex operator-(complex const &cmp) const;
+	complex operator*(complex const &cmp) const;
+	complex operator/(complex const &cmp) const;
+
+	complex & operator+=(complex const &cmp);
+	complex & operator-=(complex const &cmp);
+	complex & operator/=(complex const &cmp);
+	complex & operator*=(complex const &cmp);
+
+	complex & operator-();
+	complex & operator+();
+
+	complex operator^(double degree) const;
+	complex pair() const;
+
+	bool operator==(complex const &cmp);
+	bool operator!=(complex const &cmp);
 
 	void print_num();
-	void pair();
 	double mod();
 	double arg();
 };
