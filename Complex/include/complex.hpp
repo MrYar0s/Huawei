@@ -1,5 +1,5 @@
-#ifndef COMPLEX_HPP
-#define COMPLEX_HPP
+#ifndef COMPLEX_INCLUDE_COMPLEX_HPP
+#define COMPLEX_INCLUDE_COMPLEX_HPP
 
 #include <cmath>
 #include <iostream>

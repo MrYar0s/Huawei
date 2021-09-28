@@ -1,5 +1,5 @@
-#ifndef TEST_HPP
-#define TEST_HPP
+#ifndef COMPLEX_TESTS_TEST_HPP
+#define COMPLEX_TESTS_TEST_HPP
 
 #include "../include/complex.hpp"
 
