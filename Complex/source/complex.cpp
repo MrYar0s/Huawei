@@ -109,14 +109,14 @@ complex & complex::operator+()
 }
 
 
-bool complex::operator==(complex const &cmp)
+bool complex::operator==(complex const &cmp) const
 {
 	if(re == cmp.re && im == cmp.im)
 		return true;
 	return false;
 }
 
-bool complex::operator!=(complex const &cmp)
+bool complex::operator!=(complex const &cmp) const
 {
 	if(re != cmp.re || im != cmp.im)
 		return true;

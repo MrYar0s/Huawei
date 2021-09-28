@@ -25,8 +25,8 @@ struct complex
 	complex & operator-();
 	complex & operator+();
 
-	bool operator==(complex const &cmp);
-	bool operator!=(complex const &cmp);
+	bool operator==(complex const &cmp) const;
+	bool operator!=(complex const &cmp) const;
 
 	complex operator^(double degree) const;
 	complex pair() const;
