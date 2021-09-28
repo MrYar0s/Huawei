@@ -1,82 +1,123 @@
 #include "../include/complex.hpp"
+#include <cmath>
+#include <iostream>
+
+#define ACCURACY 10e-6
+bool is_zero(const double num)
+{
+	if(num >= -ACCURACY && num <= ACCURACY)
+		return true;
+	return false;
+}
 
 complex::complex() :
 	re(0), im(0) {}
-
-complex::complex (double num) :
-	re(num), im(0) {}
-
 complex::complex(double real, double imag) :
 	re(real), im(imag) {}
-
-
-complex::complex(complex const &num) :
+complex::complex(const complex &num) :
 	re(num.re), im(num.im) {}
-
 complex::~complex()
 {
 	re = 0;
 	im = 0;
 }
 
-complex complex::operator=(complex const &cmp)
+complex & complex::operator=(const complex &cmp)
 {
 	re = cmp.re;
 	im = cmp.im;
 	return *this;
 }
-
-complex operator+(complex const &cmp1, complex const &cmp2)
+complex & complex::operator=(double num)
 {
-	complex z;
-	z.re = cmp1.re + cmp2.re;
-	z.im = cmp1.im + cmp2.im;
-	return z;
+	re = num;
+	im = 0;
+	return *this;
 }
 
-complex operator-(complex const &cmp1, complex const &cmp2)
+complex complex::operator+(const complex &cmp) const
 {
 	complex z;
-	z.re = cmp1.re - cmp2.re;
-	z.im = cmp1.im - cmp2.im;
+	z.re = re + cmp.re;
+	z.im = im + cmp.im;
 	return z;
 }
-
-complex operator*(complex const &cmp1, complex const &cmp2)
+complex complex::operator-(const complex &cmp) const
 {
 	complex z;
-	z.re = cmp1.re*cmp2.re - cmp1.im*cmp2.im;
-	z.im = cmp1.re*cmp2.im + cmp1.im*cmp2.re;
+	z.re = re - cmp.re;
+	z.im = im - cmp.im;
 	return z;
 }
-
-complex operator/(complex const &cmp1, complex const &cmp2)
+complex complex::operator*(const complex &cmp) const
 {
 	complex z;
-	complex paired = cmp2.pair();
-	complex real = cmp2 * paired;
+	z.re = re*cmp.re - im*cmp.im;
+	z.im = re*cmp.im + im*cmp.re;
+	return z;
+}
+complex complex::operator/(const complex &cmp) const
+{
+	complex z;
+	complex paired = cmp.pair();
+	complex real = cmp * paired;
 	double denom = real.re;
-	complex numer = cmp1 * paired;
+	complex numer = *this * paired;
 	z.re = numer.re/denom;
 	z.im = numer.im/denom;
 	return z;
 }
 
-complex & complex::operator+=(complex const &cmp)
+complex complex::operator+(double num) const
+{
+	complex z;
+	z.re = num + re;
+	z.im = im;
+	return z;
+}
+complex complex::operator-(double num) const
+{
+	complex z;
+	z.re = re - num;
+	z.im = im;
+	return z;
+}
+complex complex::operator*(double num) const
+{
+	complex z;
+	z.re = num*re;
+	z.im = num*im;
+	return z;
+}
+complex complex::operator/(double num) const
+{
+	complex z;
+	z.re = re/num;
+	z.im = im/num;
+	return z;
+}
+
+complex & complex::operator+=(const complex &cmp)
 {
 	re += cmp.re;
 	im += cmp.im;
 	return *this;
 }
-
-complex & complex::operator-=(complex const &cmp)
+complex & complex::operator-=(const complex &cmp)
 {
 	re -= cmp.re;
 	im -= cmp.im;
 	return *this;
 }
-
-complex & complex::operator/=(complex const &cmp)
+complex & complex::operator*=(const complex &cmp)
+{
+	double real = re;
+	double imag = im;
+	re = real*cmp.re - imag*cmp.im;
+	im = real*cmp.im + imag*cmp.re;
+	return *this;
+}
+complex & complex::operator/=(const complex &cmp)
 {
 	complex paired = cmp.pair();
 	complex real = cmp * paired;
@@ -87,54 +128,66 @@ complex & complex::operator/=(complex const &cmp)
 	return *this;
 }
 
-complex & complex::operator*=(complex const &cmp)
+complex & complex::operator+=(double num)
+{
+	re += num;
+	return *this;
+}
+complex & complex::operator-=(double num)
+{
+	re -= num;
+	return *this;
+}
+complex & complex::operator*=(double num)
 {
 	double real = re;
 	double imag = im;
-	re = real*cmp.re - imag*cmp.im;
-	im = real*cmp.im + imag*cmp.re;
+	re = num*real;
+	im = num*imag;
+	return *this;
+}
+complex & complex::operator/=(double num)
+{
+	re = re/num;
+	im = im/num;
 	return *this;
 }
 
-complex & complex::operator-()
+complex complex::operator-() const
 {
-	re = -re;
-	im = -im;
-	return *this;
+	complex z;
+	z.re = (-1)*re;
+	z.im = (-1)*im;
+	return z;
 }
 
-complex & complex::operator+()
+bool complex::operator==(const complex &cmp) const
 {
-	return *this;
+	if(is_zero(re - cmp.re) && is_zero(im - cmp.im))
+		return true;
+	return false;
 }
-
-
-bool complex::operator==(complex const &cmp) const
+bool complex::operator!=(const complex &cmp) const
 {
-	if(re == cmp.re && im == cmp.im)
+	if(!is_zero(re - cmp.re) || !is_zero(im - cmp.im))
 		return true;
 	return false;
 }
 
-bool complex::operator!=(complex const &cmp) const
+bool complex::operator==(double num) const
 {
-	if(re != cmp.re || im != cmp.im)
+	if(is_zero(re - num) && is_zero(im))
+		return true;
+	return false;
+}
+bool complex::operator!=(double num) const
+{
+	if(!is_zero(re - num) || !is_zero(im))
 		return true;
 	return false;
 }
 
-void complex::print_num()
-{
-	if(im < 0)
-		std::cout << re << " - " << im*(-1) << 'i';
-	else if(im > 0)
-		std::cout << re << " + " << im << 'i';
-	else
-		std::cout << im;
-	std::cout << '\n';
-}
-
-complex complex::operator^(double degree)
+complex complex::operator^(double degree) const
 {
 	complex z;
 	double r = std::sqrt(re*re + im*im);
@@ -146,7 +199,6 @@ complex complex::operator^(double degree)
 	z.im = (double) (sin*dr);
 	return z;
 }
-
 complex complex::pair() const
 {
 	complex z;
@@ -155,12 +207,67 @@ complex complex::pair() const
 	return z;
 }
 
-double complex::mod()
+void complex::info() const
+{
+	if(im < 0)
+		std::cout << re << " - " << im*(-1) << 'i';
+	else if(im > 0)
+		std::cout << re << " + " << im << 'i';
+	else
+		std::cout << im;
+	std::cout << '\n';
+}
+double complex::mod() const
 {
 	return std::sqrt(re*re+im*im);
 }
-
-double complex::arg()
+double complex::arg() const
 {
 	return std::atan((double)im/(double)re);
+}
+
+complex operator+(double num, const complex &cmp)
+{
+	complex z;
+	z.re = num + cmp.re;
+	z.im = cmp.im;
+	return z;
+}
+complex operator-(double num, const complex &cmp)
+{
+	complex z;
+	z.re = num - cmp.re;
+	z.im = -cmp.im;
+	return z;
+}
+complex operator*(double num, const complex &cmp)
+{
+	complex z;
+	z.re = num*cmp.re;
+	z.im = num*cmp.im;
+	return z;
+}
+complex operator/(double num, const complex &cmp)
+{
+	complex z;
+	complex paired = cmp.pair();
+	complex real = cmp * paired;
+	double denom = real.re;
+	complex numer = paired * num;
+	z.re = numer.re/denom;
+	z.im = numer.im/denom;
+	return z;
+}
+
+bool operator==(double num, const complex &cmp)
+{
+	if(is_zero(num - cmp.re) && is_zero(cmp.im))
+		return true;
+	return false;
+}
+bool operator!=(double num, const complex &cmp)
+{
+	if(!is_zero(num - cmp.re) || !is_zero(cmp.im))
+		return true;
+	return false;
 }
