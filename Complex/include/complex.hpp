@@ -28,7 +28,7 @@ struct complex
 	bool operator==(complex const &cmp) const;
 	bool operator!=(complex const &cmp) const;
 
-	complex operator^(double degree) const;
+	complex operator^(double degree);
 	complex pair() const;
 
 	void print_num();

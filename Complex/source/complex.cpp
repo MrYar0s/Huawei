@@ -134,7 +134,7 @@ void complex::print_num()
 	std::cout << '\n';
 }
 
-complex complex::operator^(double degree) const
+complex complex::operator^(double degree)
 {
 	complex z;
 	double r = std::sqrt(re*re + im*im);
