@@ -16,10 +16,6 @@ struct complex
 	~complex();
 
 	complex operator=(complex const &cmp);
-	friend complex operator+(complex const &cmp1, complex const &cmp2);
-	friend complex operator-(complex const &cmp1, complex const &cmp2);
-	friend complex operator*(complex const &cmp1, complex const &cmp2);
-	friend complex operator/(complex const &cmp1, complex const &cmp2);
 
 	complex & operator+=(complex const &cmp);
 	complex & operator-=(complex const &cmp);
@@ -39,4 +35,9 @@ struct complex
 	double mod();
 	double arg();
 };
+
+complex operator+(complex const &cmp1, complex const &cmp2);
+complex operator-(complex const &cmp1, complex const &cmp2);
+complex operator*(complex const &cmp1, complex const &cmp2);
+complex operator/(complex const &cmp1, complex const &cmp2);
 #endif
