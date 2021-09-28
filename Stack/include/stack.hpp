@@ -1,9 +1,8 @@
-#include <iostream>
-#include <cassert>
-#include <cstdlib>
-
 #define START_SIZE 20
 
+#include <iostream>
+#include <cstdlib>
+int counter = 0;
 template<typename T>
 struct Stack
 {
@@ -22,13 +21,15 @@ struct Stack
 
 	Stack(int size)
 	{
-		data = (T*) std::calloc(START_SIZE, sizeof(T));
+		if(size < 1)
+			size = START_SIZE;
+		data = (T*) std::calloc(size, sizeof(T));
 		max_size = size;
 		min_size = 0;
 		cur_size = 0;
 	}
 
-	Stack(Stack const& stk)
+	Stack(Stack<T> const& stk)
 	{
 		data = (T*) std::calloc(stk.max_size, sizeof(T));
 		max_size = stk.max_size;
@@ -50,14 +51,14 @@ struct Stack
 	void push(T n)
 	{
 		cur_size++;
-		if(cur_size >= max_size)
+		if(cur_size > max_size)
 		{
 			min_size = (max_size*3)/4;
-			max_size = max_size*2;
-
+			max_size *= 2;
 			data = (T*) std::realloc(data, sizeof(T) * max_size);
 		}
 		data[cur_size - 1] = n;
+		counter++;
 	}
 
 	T pop()
@@ -66,7 +67,7 @@ struct Stack
 		if(cur_size < min_size)
 		{
 			if(cur_size < 7)
-				cur_size = 0;
+				min_size = 0;
 			max_size /= 2;
 			min_size /= 2;
 
@@ -81,11 +82,11 @@ struct Stack
 
 	void info()
 	{
-		std::cout<<"max size = " << max_size << "\n";
-		std::cout<<"min size = " << min_size << "\n";
-		std::cout<<"cur size = " << cur_size << "\n";
+		std::cout<<"max size = " << max_size << std::endl;
+		std::cout<<"min size = " << min_size << std::endl;
+		std::cout<<"cur size = " << cur_size << std::endl;
 		for(int i = 0; i < cur_size; i++)
-			std::cout<<"data["<<i<<"] = "<<data[i]<<"\n";
+			std::cout<<"data["<<i<<"] = "<<data[i]<<std::endl;
 	}
 
 	int size() const
@@ -93,9 +94,14 @@ struct Stack
 		return cur_size;
 	}
 
-	Stack & operator= (Stack const & stk)
+	int get_top() const
 	{
-		data = (T*) std::calloc(stk.max_size, sizeof(T));
+		return data[cur_size-1];
+	}
+
+	Stack & operator=(Stack<T> const & stk)
+	{
+		data = (T*) std::realloc(data, stk.max_size * sizeof(T));
 		max_size = stk.max_size;
 		min_size = stk.min_size;
 		for (int i = 0; i < stk.cur_size; i++)
@@ -106,7 +112,7 @@ struct Stack
 		return *this;
 	}
 
-	bool operator== (Stack const & stk) const
+	bool operator==(Stack<T> const & stk) const
 	{
 		if(min_size != stk.min_size)
 			return false;
@@ -122,7 +128,7 @@ struct Stack
 		return true;
 	}
 
-	bool operator!= (Stack const & stk) const
+	bool operator!=(Stack<T> const & stk) const
 	{
 		if(min_size != stk.max_size)
 			return true;

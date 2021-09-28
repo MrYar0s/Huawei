@@ -3,7 +3,7 @@
 
 #include "../include/complex.hpp"
 
-const double ai = 7.3;
+const double ai = 2.3;
 const double ar = -4.5;
 const double br = -0.6;
 const double bi = 11.3;

@@ -13,7 +13,11 @@ complex::complex(double real, double imag) :
 complex::complex(complex const &num) :
 	re(num.re), im(num.im) {}
 
-complex::~complex() {re = 0; im = 0;}
+complex::~complex()
+{
+	re = 0;
+	im = 0;
+}
 
 complex complex::operator=(complex const &cmp)
 {
