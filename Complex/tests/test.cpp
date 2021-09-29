@@ -1,8 +1,35 @@
-#include "test.hpp"
 #include "../include/complex.hpp"
 #include <cassert>
 #include <cmath>
 #include <iostream>
+
+const double ai = 2.3;
+const double ar = -4.5;
+const double br = -0.6;
+const double bi = 11.3;
+
+bool is_zero(const double num);
+
+bool void_init_test();
+bool init_test();
+bool copy_init_test();
+bool plus_test();
+bool sub_test();
+bool num_init_test();
+bool pair_test();
+bool mult_test();
+bool pow_test();
+bool mod_test();
+bool arg_test();
+bool equal_test();
+bool div_test();
+bool plus_eq_test();
+bool sub_eq_test();
+bool mult_eq_test();
+bool div_eq_test();
+bool unar_sub_test();
+bool is_equal_test();
+bool is_not_equal_test();
 
 bool void_init_test()
 {
@@ -359,9 +386,6 @@ bool div_eq_test()
 	double im = numer.im/denom;
 
 	b /= a;
-	a.info();
-	b.info();
-	printf("re = %lg im = %lg\n", re, im);
 	if(!is_zero(b.re - re) || !is_zero(b.im - im))
 	{
 		std::cerr<<"complex/complex failed"<<std::endl;
