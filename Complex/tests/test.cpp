@@ -357,10 +357,14 @@ bool div_eq_test()
 	complex numer = b * paired;
 	double re = numer.re/denom;
 	double im = numer.im/denom;
-	
+
 	b /= a;
+	a.info();
+	b.info();
+	printf("re = %lg im = %lg\n", re, im);
 	if(!is_zero(b.re - re) || !is_zero(b.im - im))
 	{
+		std::cerr<<"complex/complex failed"<<std::endl;
 		std::cerr<<"div_eq_test failed"<<std::endl;
 		return false;
 	}
@@ -369,6 +373,7 @@ bool div_eq_test()
 	c /= 3;
 	if(!is_zero(c.re - ar/3) || !is_zero(c.im - ai/3))
 	{
+		std::cerr<<"complex/num failed"<<std::endl;
 		std::cerr<<"div_eq_test failed"<<std::endl;
 		return false;
 	}

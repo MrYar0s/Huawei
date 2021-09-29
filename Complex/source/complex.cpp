@@ -58,13 +58,10 @@ complex complex::operator*(const complex &cmp) const
 }
 complex complex::operator/(const complex &cmp) const
 {
-	complex z;
-	complex paired = cmp.pair();
-	complex real = cmp * paired;
-	double denom = real.re;
-	complex numer = *this * paired;
-	z.re = numer.re/denom;
-	z.im = numer.im/denom;
+	complex z = *this;
+	double real = cmp.re;
+	double imag = cmp.im;
+	z *= cmp.pair()/(real*real+imag*imag);
 	return z;
 }
 
@@ -119,12 +116,9 @@ complex & complex::operator*=(const complex &cmp)
 }
 complex & complex::operator/=(const complex &cmp)
 {
-	complex paired = cmp.pair();
-	complex real = cmp * paired;
-	double denom = real.re;
-	complex numer = *this * paired;
-	re = numer.re/denom;
-	im = numer.im/denom;
+	double real = cmp.re;
+	double imag = cmp.im;
+	*this *= cmp.pair()/(real*real + imag*imag);
 	return *this;
 }
 
@@ -214,7 +208,7 @@ void complex::info() const
 	else if(im > 0)
 		std::cout << re << " + " << im << 'i';
 	else
-		std::cout << im;
+		std::cout << re;
 	std::cout << '\n';
 }
 double complex::mod() const
@@ -249,13 +243,8 @@ complex operator*(double num, const complex &cmp)
 }
 complex operator/(double num, const complex &cmp)
 {
-	complex z;
-	complex paired = cmp.pair();
-	complex real = cmp * paired;
-	double denom = real.re;
-	complex numer = paired * num;
-	z.re = numer.re/denom;
-	z.im = numer.im/denom;
+	complex z{num, 0};
+	z /= cmp;
 	return z;
 }
 
