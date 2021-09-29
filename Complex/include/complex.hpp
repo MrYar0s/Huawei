@@ -1,8 +1,6 @@
 #ifndef COMPLEX_INCLUDE_COMPLEX_HPP
 #define COMPLEX_INCLUDE_COMPLEX_HPP
 
-bool is_zero(const double num);
-
 struct complex
 {
 	double re;

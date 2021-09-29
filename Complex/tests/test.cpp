@@ -1,4 +1,5 @@
 #include "test.hpp"
+#include "../include/complex.hpp"
 #include <cassert>
 #include <cmath>
 #include <iostream>

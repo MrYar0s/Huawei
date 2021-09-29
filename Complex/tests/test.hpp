@@ -1,12 +1,12 @@
 #ifndef COMPLEX_TESTS_TEST_HPP
 #define COMPLEX_TESTS_TEST_HPP
 
-#include "../include/complex.hpp"
-
 const double ai = 2.3;
 const double ar = -4.5;
 const double br = -0.6;
 const double bi = 11.3;
+
+bool is_zero(const double num);
 
 bool void_init_test();
 bool init_test();
