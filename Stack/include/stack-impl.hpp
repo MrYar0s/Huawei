@@ -12,12 +12,12 @@ Stack<T>::Stack()
 }
 
 template <class T>
-Stack<T>::Stack(T* data, int size)
+Stack<T>::Stack(int size)
 {
 	if(size < 0)
 		size = START_SIZE;
+	data_ = new T [size];
 	size_ = size;
-	data_ = new T [size_];
 	cur_ = 0;
 }
 
@@ -101,14 +101,12 @@ void Stack<T>::push(T n)
 }
 
 template <class T>
-T Stack<T>::pop()
+void Stack<T>::pop()
 {
 	cur_--;
 
 	T n = data_[cur_];
 	data_[cur_] = 0;
-
-	return n;
 }
 
 template <class T>
@@ -121,9 +119,15 @@ void Stack<T>::info() const
 }
 
 template <class T>
-int Stack<T>::size() const
+int Stack<T>::max_size() const
 {
 	return size_;
+}
+
+template <class T>
+int Stack<T>::size() const
+{
+	return cur_;
 }
 
 template <class T>

@@ -12,7 +12,7 @@ class Stack
 {
 public:
 	Stack();
-	Stack(T* data, int size);
+	Stack(int size);
 	Stack(const Stack &other);
 	Stack(Stack &&other);
 	~Stack();
@@ -21,9 +21,10 @@ public:
 	Stack & operator=(Stack &&other);
 
 	void push(T n);
-	T pop();
+	void pop();
 
 	void info() const;
+	int max_size() const;
 	int size() const;
 	T& top();
 	const T& top() const;
@@ -35,7 +36,7 @@ public:
 
 	void expand();
 
-//private:
+private:
 	T* data_;
 	int size_;
 	int cur_;

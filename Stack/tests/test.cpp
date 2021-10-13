@@ -5,7 +5,7 @@
 void void_init()
 {
 	stack::Stack<int> a;
-	if(a.data_ == nullptr || a.size_ != stack::START_SIZE || a.cur_ != 0)
+	if(a.max_size() != stack::START_SIZE || a.size() != 0)
 	{
 		std::cerr<<"Test void_init failed"<<std::endl;
 	}
@@ -13,10 +13,9 @@ void void_init()
 
 void init()
 {
-	int* data;
 	int size = 17;
-	stack::Stack<int> a(data, size);
-	if(a.data_ == nullptr || a.size_ != size || a.cur_ != 0)
+	stack::Stack<int> a(size);
+	if(a.max_size() != size || a.size() != 0)
 	{
 		std::cerr<<"Test init failed"<<std::endl;
 	}
@@ -24,11 +23,10 @@ void init()
 
 void init_other()
 {
-	int* data;
 	int size = 17;
-	stack::Stack<int> a(data, size);
+	stack::Stack<int> a(size);
 	stack::Stack<int> b(a);
-	if(b.data_ == nullptr || a.data_ == nullptr || b.size_ != a.size_ || b.cur_ != a.cur_)
+	if(b.max_size() != a.max_size() || b.size() != a.size())
 	{
 		std::cerr<<"Test init_other failed"<<std::endl;
 	}
@@ -36,10 +34,9 @@ void init_other()
 
 void is_equal_operator()
 {
-	int* data;
 	int size = 17;
-	stack::Stack<int> a(data, size);
-	stack::Stack<int> b(data, size);
+	stack::Stack<int> a(size);
+	stack::Stack<int> b(size);
 	for(int i = 0; i < size; i++)
 	{
 		a.push(i);
@@ -59,9 +56,8 @@ void is_equal_operator()
 
 void equal_operator()
 {
-	int* data;
 	int size = 17;
-	stack::Stack<int> a(data, size);
+	stack::Stack<int> a(size);
 	a.push(5);
 	stack::Stack<int> b;
 	b = a;
@@ -79,30 +75,22 @@ void push_pop()
 	{
 		a.push(i);
 	}
-	for (int i = 0; i < 2*start; ++i)
-	{
-		if(i != a.data_[i])
-		{
-			std::cerr<<"Test push_pop failed"<<std::endl;
-			std::cerr<<"Push error"<<std::endl;
-			std::cerr<<"Error with data["<<i<<"] == "<< a.data_[i]<<std::endl;
-		}
-	}
 	for (int i = 2*start - 1; i >= 0; --i)
 	{
-		if(i != a.pop())
+		if(i != a.top())
 		{
 			std::cerr<<"Test push_pop failed"<<std::endl;
 			std::cerr<<"Pop error"<<std::endl;
-			std::cerr<<"Error with data["<<i<<"] == "<< a.data_[i]<<std::endl;
+			std::cerr<<"Error with data["<<i<<"] == "<< a.top()<<std::endl;
 		}
+		a.pop();
 	}
 }
 
 void size_test()
 {
 	stack::Stack<int> a;
-	if(a.size() != stack::START_SIZE)
+	if(a.max_size() != stack::START_SIZE)
 	{
 		std::cerr<<"Test size_test failed"<<std::endl;
 	}
