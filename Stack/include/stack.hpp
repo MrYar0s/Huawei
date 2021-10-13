@@ -4,7 +4,7 @@
 namespace stack
 {
 
-const int START_SIZE = 16;
+const int START_SIZE = 32;
 const int MEMORY_MULT = 2;
 
 template <class T>
@@ -25,7 +25,7 @@ public:
 
 	void info() const;
 	int size() const;
-	T& top() const;
+	T& top();
 	const T& top() const;
 
 	bool operator==(const Stack &other) const;
@@ -35,12 +35,11 @@ public:
 
 	void expand();
 
-private:
+//private:
 	T* data_;
 	int size_;
 	int cur_;
 };
 
 }//namespace stack
-
 #endif //STACK_SORCE_STACK_HPP

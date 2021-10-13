@@ -1,11 +1,10 @@
-#include "../include/stack.hpp"
 #include <iostream>
 
 namespace stack
 {
 
 template <class T>
-Stack::Stack()
+Stack<T>::Stack()
 {
 	size_ = START_SIZE;
 	data_ = new T [size_];
@@ -13,7 +12,7 @@ Stack::Stack()
 }
 
 template <class T>
-Stack::Stack(T* data, int size)
+Stack<T>::Stack(T* data, int size)
 {
 	if(size < 0)
 		size = START_SIZE;
@@ -23,19 +22,19 @@ Stack::Stack(T* data, int size)
 }
 
 template <class T>
-Stack::Stack(const Stack &other)
+Stack<T>::Stack(const Stack &other)
 {
 	size_ = other.size_;
 	data_ = new T [size_];
 	cur_ = other.cur_;
-	for (int i = 0; i < cur_; i++)
+	for (int i = 0; i < size_; i++)
 	{
 		data_[i] = other.data_[i];
 	}
 }
 
 template <class T>
-Stack::Stack(Stack &&other)
+Stack<T>::Stack(Stack &&other)
 {
 	data_ = other.data_;
 	size_ = other.size_;
@@ -45,7 +44,7 @@ Stack::Stack(Stack &&other)
 }
 
 template <class T>
-Stack::~Stack()
+Stack<T>::~Stack()
 {
 	delete [] data_;
 	size_ = 0;
@@ -53,7 +52,7 @@ Stack::~Stack()
 }
 
 template <class T>
-Stack & Stack::operator=(const Stack &other)
+Stack<T> & Stack<T>::operator=(const Stack &other)
 {
 	if(*this == other)
 	{
@@ -65,7 +64,7 @@ Stack & Stack::operator=(const Stack &other)
 	delete [] data_;
 	data_ = new T [size_];
 	
-	for (int i = 0; i < cur_; i++)
+	for (int i = 0; i < size_; i++)
 	{
 		data_[i] = other.data_[i];
 	}
@@ -74,7 +73,7 @@ Stack & Stack::operator=(const Stack &other)
 }
 
 template <class T>
-Stack & Stack::operator=(Stack &&other)
+Stack<T> & Stack<T>::operator=(Stack &&other)
 {
 	if(*this == other)
 	{
@@ -91,18 +90,18 @@ Stack & Stack::operator=(Stack &&other)
 }
 
 template <class T>
-void Stack::push(T n)
+void Stack<T>::push(T n)
 {
 	cur_++;
 	if(cur_ > size_)
 	{
 		expand();
 	}
-	data[cur_ - 1] = n;
+	data_[cur_ - 1] = n;
 }
 
 template <class T>
-int Stack::pop()
+T Stack<T>::pop()
 {
 	cur_--;
 
@@ -113,7 +112,7 @@ int Stack::pop()
 }
 
 template <class T>
-void Stack::info() const
+void Stack<T>::info() const
 {
 	std::cout<<"maximum size = " << size_ << std::endl;
 	std::cout<<"current size = " << cur_ << std::endl;
@@ -122,30 +121,26 @@ void Stack::info() const
 }
 
 template <class T>
-int Stack::size() const
+int Stack<T>::size() const
 {
-	return cur_;
+	return size_;
 }
 
 template <class T>
-T& Stack::top() const
+T& Stack<T>::top()
 {
-	return data[cur_ - 1];
+	return data_[cur_ - 1];
 }
 
 template <class T>
-const T& Stack::top() const
+const T& Stack<T>::top() const
 {
-	return data[cur_ - 1];
+	return data_[cur_ - 1];
 }
 
 template <class T>
-bool Stack::operator==(const Stack & other) const
+bool Stack<T>::operator==(const Stack & other) const
 {
-	if(size_ > other.cur_ || other.size_ > cur_)
-	{
-		return false;
-	}
 	if(cur_ != other.cur_)
 	{
 		return false;
@@ -159,17 +154,13 @@ bool Stack::operator==(const Stack & other) const
 }
 
 template <class T>
-bool Stack::operator!=(const Stack &other) const
+bool Stack<T>::operator!=(const Stack &other) const
 {
-	if(!(*this == other))
-	{
-		return true;
-	}
-	return false;
+	return !(*this == other);
 }
 
 template <class T>
-bool Stack::stackOK() const
+bool Stack<T>::stackOK() const
 {
 	if(this == nullptr)
 	{
@@ -191,11 +182,11 @@ bool Stack::stackOK() const
 }
 
 template <class T>
-void expand()
+void Stack<T>::expand()
 {
-	cur_ *= MEMORY_MULT;
-	other_data_ = new T [cur_];
-	for (int i = 0; i < size_; ++i)
+	size_ *= MEMORY_MULT;
+	T* other_data_ = new T [size_];
+	for (int i = 0; i < cur_; ++i)
 	{
 		other_data_[i] = data_[i];
 	}
