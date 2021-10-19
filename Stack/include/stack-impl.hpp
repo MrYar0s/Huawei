@@ -12,10 +12,8 @@ Stack<T>::Stack()
 }
 
 template <class T>
-Stack<T>::Stack(int size)
+Stack<T>::Stack(size_t size)
 {
-	if(size < 0)
-		size = START_SIZE;
 	data_ = new T [size];
 	size_ = size;
 	cur_ = 0;
@@ -27,7 +25,7 @@ Stack<T>::Stack(const Stack &other)
 	size_ = other.size_;
 	data_ = new T [size_];
 	cur_ = other.cur_;
-	for (int i = 0; i < size_; i++)
+	for (size_t i = 0; i < size_; i++)
 	{
 		data_[i] = other.data_[i];
 	}
@@ -47,8 +45,6 @@ template <class T>
 Stack<T>::~Stack()
 {
 	delete [] data_;
-	size_ = 0;
-	cur_ = 0;
 }
 
 template <class T>
@@ -64,7 +60,7 @@ Stack<T> & Stack<T>::operator=(const Stack &other)
 	delete [] data_;
 	data_ = new T [size_];
 	
-	for (int i = 0; i < size_; i++)
+	for (size_t i = 0; i < size_; i++)
 	{
 		data_[i] = other.data_[i];
 	}
@@ -105,7 +101,6 @@ void Stack<T>::pop()
 {
 	cur_--;
 
-	T n = data_[cur_];
 	data_[cur_] = 0;
 }
 
@@ -114,18 +109,18 @@ void Stack<T>::info() const
 {
 	std::cout<<"maximum size = " << size_ << std::endl;
 	std::cout<<"current size = " << cur_ << std::endl;
-	for(int i = 0; i < cur_; i++)
+	for(size_t i = 0; i < cur_; i++)
 		std::cout<<"data["<<i<<"] = "<<data_[i]<<std::endl;
 }
 
 template <class T>
-int Stack<T>::max_size() const
+size_t Stack<T>::max_size() const
 {
 	return size_;
 }
 
 template <class T>
-int Stack<T>::size() const
+size_t Stack<T>::size() const
 {
 	return cur_;
 }
@@ -149,7 +144,7 @@ bool Stack<T>::operator==(const Stack & other) const
 	{
 		return false;
 	}
-	for (int i = 0; i < cur_; ++i)
+	for (size_t i = 0; i < cur_; ++i)
 	{
 		if(data_[i] != other.data_[i])
 			return false;
@@ -164,33 +159,11 @@ bool Stack<T>::operator!=(const Stack &other) const
 }
 
 template <class T>
-bool Stack<T>::stackOK() const
-{
-	if(this == nullptr)
-	{
-		return false;
-	}
-	if(cur_ > size_)
-	{
-		return false;
-	}
-	if(data_ == nullptr)
-	{
-		return false;
-	}
-	if(cur_ < 0)
-	{
-		return false;
-	}
-	return true;
-}
-
-template <class T>
 void Stack<T>::expand()
 {
-	size_ *= MEMORY_MULT;
+	size_ = (size_t)(MEMORY_MULT*(long double)size_);
 	T* other_data_ = new T [size_];
-	for (int i = 0; i < cur_; ++i)
+	for (size_t i = 0; i < cur_; ++i)
 	{
 		other_data_[i] = data_[i];
 	}

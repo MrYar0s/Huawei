@@ -1,18 +1,19 @@
+#include <cstddef>
 #ifndef STACK_SORCE_STACK_HPP
 #define STACK_SORCE_STACK_HPP
 
 namespace stack
 {
 
-const int START_SIZE = 32;
-const int MEMORY_MULT = 2;
+const size_t START_SIZE = 2;
+const long double MEMORY_MULT = 2;
 
 template <class T>
 class Stack
 {
 public:
 	Stack();
-	Stack(int size);
+	Stack(size_t size);
 	Stack(const Stack &other);
 	Stack(Stack &&other);
 	~Stack();
@@ -24,23 +25,52 @@ public:
 	void pop();
 
 	void info() const;
-	int max_size() const;
-	int size() const;
+	size_t max_size() const;
+	size_t size() const;
 	T& top();
 	const T& top() const;
 
 	bool operator==(const Stack &other) const;
 	bool operator!=(const Stack &other) const;
 
-	bool stackOK() const;
-
 	void expand();
 
 private:
 	T* data_;
-	int size_;
-	int cur_;
+	size_t size_;
+	size_t cur_;
 };
 
-}//namespace stack
+template <>
+class Stack<bool>
+{
+public:
+	Stack();
+	Stack(size_t size);
+	Stack(const Stack &other);
+	Stack(Stack&& other);
+	~Stack();
+
+	Stack & operator=(const Stack &other);
+	Stack & operator=(Stack &&other);
+
+	void push(bool n);
+	void pop();
+
+	void info() const;
+	size_t max_size() const;
+	size_t size() const;
+	bool top() const;
+
+	bool operator==(const Stack &other) const;
+	bool operator!=(const Stack &other) const;
+
+	void expand();
+private:
+	unsigned char* data_;
+	size_t size_;
+	size_t cur_;
+
+};
+};//namespace stack
 #endif //STACK_SORCE_STACK_HPP
