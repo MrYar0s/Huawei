@@ -1,6 +1,6 @@
+#ifndef STACK_INCLUDE_STACK_HPP
+#define STACK_INCLUDE_STACK_HPP
 #include <cstddef>
-#ifndef STACK_SORCE_STACK_HPP
-#define STACK_SORCE_STACK_HPP
 
 namespace stack
 {

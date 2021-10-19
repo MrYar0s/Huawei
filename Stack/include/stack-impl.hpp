@@ -1,3 +1,5 @@
+#ifndef STACK_INCLUDE_STACK_IMPL_HPP
+#define STACK_INCLUDE_STACK_IMPL_HPP
 #include <iostream>
 
 namespace stack
@@ -172,3 +174,5 @@ void Stack<T>::expand()
 }
 
 }//namespace stack
+
+#endif//STACK_INCLUDE_STACK_IMPL_HPP
