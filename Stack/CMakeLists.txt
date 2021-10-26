@@ -31,7 +31,7 @@ if(BENCHMARK)
 	message(STATUS "Бенчмарк подключен")
 endif()
 
-#include(clang-format.cmake)
+include(clang-format.cmake)
 
 #Add target
 add_custom_target(val COMMENT "Included valgrind" COMMAND valgrind ./${PROJECT_NAME})

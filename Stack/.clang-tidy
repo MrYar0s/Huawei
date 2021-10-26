@@ -1,10 +1,1 @@
-Checks: '-*,
-		clang-diagnostic-*,
-		misc-*,
-		-misc-unused-parameters,
-		-misc-non-private-member-variables-in-classes,
-		-misc-no-recursion,
-		readability-identifier-naming,
-		google-*,
-		modernize-*,
-		-modernize-use-trailing-return-type'
+Checks: '-*,clang-diagnostic-*,misc-*,-misc-unused-parameters,-misc-non-private-member-variables-in-classes,-misc-no-recursion,readability-identifier-naming,google-*,modernize-*,-modernize-use-trailing-return-type'
