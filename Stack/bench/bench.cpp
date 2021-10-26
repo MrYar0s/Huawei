@@ -7,16 +7,16 @@ const size_t size = 10000000;
 
 const size_t max_memory_mult = 10;
 
-static void MultTest(benchmark::State &state) {
+void MultTest(benchmark::State &state) {
   for (auto _ : state) {
     stack::Stack<size_t> stk;
     stk.change_memory_mult(1.0 + state.range() / 10.0);
     for (size_t i = 0; i < size; i++) {
-      stk.push(1);
+      stk.push(i);
     }
   }
 }
 
-BENCHMARK(MultTest)->DenseRange(1, max_memory_mult);
+BENCHMARK(MultTest)->DenseRange(1, max_memory_mult)->Unit(benchmark::kMillisecond);
 
 BENCHMARK_MAIN();
