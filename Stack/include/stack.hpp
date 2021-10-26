@@ -9,7 +9,7 @@ public:
   const size_t START_SIZE = 32;
 
   Stack();
-  Stack(size_t size);
+  explicit Stack(size_t size);
   Stack(const Stack &other);
   Stack(Stack &&other);
   ~Stack();
@@ -45,7 +45,7 @@ public:
   const size_t START_SIZE = 8;
 
   Stack();
-  Stack(size_t size);
+  explicit Stack(size_t size);
   Stack(const Stack &other);
   Stack(Stack &&other);
   ~Stack();

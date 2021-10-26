@@ -237,7 +237,7 @@ bool Stack<bool>::operator!=(const Stack &other) const {
 
 void Stack<bool>::expand() {
   size_ = static_cast<size_t>(MEMORY_MULT * static_cast<long double>(size_));
-  unsigned char *other_data_ = new unsigned char[size_ / CHAR_BIT];
+  auto other_data_ = new unsigned char[size_ / CHAR_BIT];
   for (size_t i = 0; i < cur_; i++) {
     if (data_[i / CHAR_BIT] & (1 << (i % CHAR_BIT))) {
       other_data_[i / CHAR_BIT] |= (1 << (i % CHAR_BIT));
