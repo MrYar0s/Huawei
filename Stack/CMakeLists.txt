@@ -1,30 +1,37 @@
 #Minimum cmake version
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.11)
 #Project info
 project(stack)
 #Choose language
 enable_language(CXX)
-#Set flags
-set(CMAKE_CXX_FLAGS -Wall)
+#Add options
+add_compile_options(-Wall -Werror)
+set(CMAKE_CXX_CLANG_TIDY
+	clang-tidy;
+	--format-style=file;
+	--header-filter=include/*.h*;
+	)
 
-option(TESTING "Включить тестирование" ON)
-
-set(APP_SOURCES source/stack_bool.cpp)
 set(APP_INCLUDES include)
 
+option(TESTING "Включить тестирование" ON)
+option(BENCHMARK "Включить бенчмарк" ON)
+
+add_library(stack INTERFACE)
+
+target_include_directories(stack INTERFACE ${APP_INCLUDES})
+
 if(TESTING)
-	find_package(GTest REQUIRED)
-	find_package(Threads REQUIRED)
-
-	set(APP_TEST tests/gtest.cpp)
-
-	add_executable(${PROJECT_NAME} ${APP_TEST} ${APP_SOURCES})
-	target_include_directories(${PROJECT_NAME} PRIVATE ${APP_INCLUDES} ${GTEST_INCLUDE_DIRS})
-	target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} -pthread)
+	add_subdirectory(tests)
 	message(STATUS "Тестирование включено")
 endif()
 
+if(BENCHMARK)
+	add_subdirectory(bench)
+	message(STATUS "Бенчмарк подключен")
+endif()
+
+#include(clang-format.cmake)
+
 #Add target
 add_custom_target(val COMMENT "Included valgrind" COMMAND valgrind ./${PROJECT_NAME})
-
-enable_testing()
