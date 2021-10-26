@@ -26,6 +26,8 @@ public:
   T &top();
   const T &top() const;
 
+  void swap(Stack &other);
+
   bool operator==(const Stack &other) const;
   bool operator!=(const Stack &other) const;
 
@@ -60,6 +62,8 @@ public:
   size_t max_size() const;
   size_t size() const;
   bool top() const;
+
+  void swap(Stack &other);
 
   bool operator==(const Stack &other) const;
   bool operator!=(const Stack &other) const;

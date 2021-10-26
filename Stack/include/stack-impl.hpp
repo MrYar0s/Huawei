@@ -3,6 +3,10 @@
 #include "../include/stack.hpp"
 #include <climits>
 #include <iostream>
+#include <algorithm>
+#include <utility>
+#include <cstdlib>
+#include <cstring>
 
 namespace stack {
 
@@ -124,6 +128,13 @@ template <class T> void Stack<T>::expand() {
   data_ = other_data_;
 }
 
+template <class T> void Stack<T>::swap(Stack &other) {
+  std::swap(data_, other.data_);
+  std::swap(size_, other.size_);
+  std::swap(cur_, other.cur_);
+  std::swap(MEMORY_MULT, other.MEMORY_MULT);
+}
+
 Stack<bool>::Stack() {
   size_ = START_SIZE;
   data_ = new unsigned char[size_t(START_SIZE / CHAR_BIT)];
@@ -216,6 +227,13 @@ size_t Stack<bool>::size() const { return cur_; }
 
 bool Stack<bool>::top() const {
   return static_cast<bool>((1 << (cur_ % CHAR_BIT)) & data_[cur_ / CHAR_BIT]);
+}
+
+void Stack<bool>::swap(Stack &other) {
+  std::swap(data_, other.data_);
+  std::swap(size_, other.size_);
+  std::swap(cur_, other.cur_);
+  std::swap(MEMORY_MULT, other.MEMORY_MULT);
 }
 
 bool Stack<bool>::operator==(const Stack &other) const {
