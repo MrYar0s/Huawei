@@ -81,8 +81,9 @@ template <class T> void Stack<T>::pop() { cur_--; }
 template <class T> void Stack<T>::info() const {
   std::cout << "maximum size = " << size_ << std::endl;
   std::cout << "current size = " << cur_ << std::endl;
-  for (size_t i = 0; i < cur_; i++)
+  for (size_t i = 0; i < cur_; i++) {
     std::cout << "data[" << i << "] = " << data_[i] << std::endl;
+  }
 }
 
 template <class T> size_t Stack<T>::max_size() const { return size_; }
@@ -98,8 +99,9 @@ template <class T> bool Stack<T>::operator==(const Stack &other) const {
     return false;
   }
   for (size_t i = 0; i < cur_; ++i) {
-    if (data_[i] != other.data_[i])
+    if (data_[i] != other.data_[i]) {
       return false;
+    }
   }
   return true;
 }
@@ -113,7 +115,7 @@ template <class T> void Stack<T>::change_memory_mult(double mult) {
 }
 
 template <class T> void Stack<T>::expand() {
-  size_ = (size_t)(MEMORY_MULT * (long double)size_);
+  size_ = static_cast<size_t>(MEMORY_MULT * static_cast<long double>(size_));
   T *other_data_ = new T[size_];
   for (size_t i = 0; i < cur_; ++i) {
     other_data_[i] = data_[i];
@@ -201,10 +203,11 @@ void Stack<bool>::pop() { cur_--; }
 void Stack<bool>::info() const {
   std::cout << "maximum size = " << size_ << std::endl;
   std::cout << "current size = " << cur_ << std::endl;
-  for (size_t i = 1; i <= cur_; i++)
-    std::cout << "data[" << i
-              << "] = " << (bool)((1 << (i % CHAR_BIT)) & data_[i / CHAR_BIT])
+  for (size_t i = 1; i <= cur_; i++) {
+    std::cout << "data[" << i << "] = "
+              << static_cast<bool>((1 << (i % CHAR_BIT)) & data_[i / CHAR_BIT])
               << std::endl;
+  }
 }
 
 size_t Stack<bool>::max_size() const { return size_; }
@@ -212,7 +215,7 @@ size_t Stack<bool>::max_size() const { return size_; }
 size_t Stack<bool>::size() const { return cur_; }
 
 bool Stack<bool>::top() const {
-  return (bool)((1 << (cur_ % CHAR_BIT)) & data_[cur_ / CHAR_BIT]);
+  return static_cast<bool>((1 << (cur_ % CHAR_BIT)) & data_[cur_ / CHAR_BIT]);
 }
 
 bool Stack<bool>::operator==(const Stack &other) const {
@@ -221,8 +224,9 @@ bool Stack<bool>::operator==(const Stack &other) const {
   }
   for (size_t i = 1; i <= cur_; ++i) {
     if (((1 << (i % CHAR_BIT)) & data_[i / CHAR_BIT]) !=
-        ((1 << (i % CHAR_BIT)) & other.data_[i / CHAR_BIT]))
+        ((1 << (i % CHAR_BIT)) & other.data_[i / CHAR_BIT])) {
       return false;
+    }
   }
   return true;
 }
@@ -232,7 +236,7 @@ bool Stack<bool>::operator!=(const Stack &other) const {
 }
 
 void Stack<bool>::expand() {
-  size_ = (size_t)(MEMORY_MULT * (long double)size_);
+  size_ = static_cast<size_t>(MEMORY_MULT * static_cast<long double>(size_));
   unsigned char *other_data_ = new unsigned char[size_ / CHAR_BIT];
   for (size_t i = 0; i < cur_; i++) {
     if (data_[i / CHAR_BIT] & (1 << (i % CHAR_BIT))) {
