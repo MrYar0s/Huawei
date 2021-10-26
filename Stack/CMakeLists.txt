@@ -8,7 +8,7 @@ enable_language(CXX)
 add_compile_options(-Wall -Werror)
 
 option(TESTING "Включить тестирование" ON)
-option(BENCHMARK "Включить бенчмапк" ON)
+option(BENCHMARK "Включить бенчмарк" ON)
 option(TIDY "Включить clang-tidy" ON)
 
 set(APP_INCLUDES include)
