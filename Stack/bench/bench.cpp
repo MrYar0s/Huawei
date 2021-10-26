@@ -17,6 +17,8 @@ void MultTest(benchmark::State &state) {
   }
 }
 
-BENCHMARK(MultTest)->DenseRange(1, max_memory_mult)->Unit(benchmark::kMillisecond);
+BENCHMARK(MultTest)
+    ->DenseRange(1, max_memory_mult)
+    ->Unit(benchmark::kMillisecond);
 
 BENCHMARK_MAIN();
