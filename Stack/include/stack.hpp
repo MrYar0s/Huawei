@@ -72,5 +72,5 @@ private:
   size_t size_;
   size_t cur_;
 };
-}     // namespace stack
+} // namespace stack
 #endif // STACK_SORCE_STACK_HPP

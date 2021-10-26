@@ -23,15 +23,14 @@ target_include_directories(stack INTERFACE ${APP_INCLUDES})
 
 if(TESTING)
 	add_subdirectory(tests)
+	add_custom_target(test_${PROJECT_NAME} COMMAND ./tests/test)
 	message(STATUS "Тестирование включено")
 endif()
 
 if(BENCHMARK)
 	add_subdirectory(bench)
+	add_custom_target(bench_${PROJECT_NAME} COMMAND ./bench/bench)
 	message(STATUS "Бенчмарк подключен")
 endif()
 
 include(clang-format.cmake)
-
-#Add target
-add_custom_target(val COMMENT "Included valgrind" COMMAND valgrind ./${PROJECT_NAME})
