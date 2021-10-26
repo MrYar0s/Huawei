@@ -5,13 +5,12 @@
 namespace stack
 {
 
-const size_t START_SIZE = 2;
-const long double MEMORY_MULT = 2;
-
 template <class T>
 class Stack
 {
 public:
+	const size_t START_SIZE = 32;
+
 	Stack();
 	Stack(size_t size);
 	Stack(const Stack &other);
@@ -35,7 +34,10 @@ public:
 
 	void expand();
 
+	void change_memory_mult(double mult);
+
 private:
+	double MEMORY_MULT = 2;
 	T* data_;
 	size_t size_;
 	size_t cur_;
@@ -45,6 +47,8 @@ template <>
 class Stack<bool>
 {
 public:
+	const size_t START_SIZE = 8;
+
 	Stack();
 	Stack(size_t size);
 	Stack(const Stack &other);
@@ -67,6 +71,7 @@ public:
 
 	void expand();
 private:
+	double MEMORY_MULT = 2;
 	unsigned char* data_;
 	size_t size_;
 	size_t cur_;
