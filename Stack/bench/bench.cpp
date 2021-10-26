@@ -1,29 +1,22 @@
-#include <../include/stack.hpp>
-#include <../include/stack-impl.hpp>
 #include <benchmark/benchmark.h>
 
-const size_t size = 100000;
+#include <../include/stack-impl.hpp>
+#include <../include/stack.hpp>
 
-void MultTest(benchmark::State& state)
-{
-	long double counter = state.range(0);
-	stack::MEMORY_MULT = 1.7;
-	stack::Stack<size_t> stk;
-	for(auto _ : state)
-	{
-		for(size_t i = 0; i < size; i++)
-		{
-			stk.push(i);
-		}
-	}
+const size_t size = 10000000;
+
+const size_t max_memory_mult = 10;
+
+static void MultTest(benchmark::State &state) {
+  for (auto _ : state) {
+    stack::Stack<size_t> stk;
+    stk.change_memory_mult(1.0 + state.range() / 10.0);
+    for (size_t i = 0; i < size; i++) {
+      stk.push(1);
+    }
+  }
 }
 
-BENCHMARK(MultTest)
-	-> Arg(20)
-	-> Arg(21)
-	-> Arg(22)
-	-> Arg(23)
-        -> Arg(24)
-	-> Arg(25);
+BENCHMARK(MultTest)->DenseRange(1, max_memory_mult);
 
 BENCHMARK_MAIN();
