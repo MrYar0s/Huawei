@@ -21,7 +21,7 @@ if(TIDY)
 		clang-tidy;
 		--format-style=file;
 		--header-filter=.*;
-		)
+	)
 	message(STATUS "clang-tidy ON")
 endif()
 
@@ -36,7 +36,6 @@ if(FORMAT)
 	)
 	message(STATUS "clang-format ON")
 endif()
-
 
 add_subdirectory(tests)
 add_subdirectory(bench)
