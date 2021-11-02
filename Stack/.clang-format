@@ -19,5 +19,5 @@ IndentWidth: 4
 UseTab: ForIndentation
 BreakBeforeBraces: Allman
 
-TabWidth: 8
+TabWidth: 4
 ---
