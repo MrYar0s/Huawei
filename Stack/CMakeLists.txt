@@ -7,9 +7,8 @@ enable_language(CXX)
 #Add options
 add_compile_options(-Wall -Werror)
 
-option(TESTING "Включить тестирование" ON)
-option(BENCHMARK "Включить бенчмарк" ON)
-option(TIDY "Включить clang-tidy" ON)
+option(TIDY "Enable clang-tidy" ON)
+option(FORMAT "Enable clang-format" ON)
 
 set(APP_INCLUDES include)
 
@@ -21,18 +20,23 @@ if(TIDY)
 	set(CMAKE_CXX_CLANG_TIDY
 		clang-tidy;
 		--format-style=file;
-		--header-filter=include/*.h*;
+		--header-filter=.*;
 		)
-	include(clang-format.cmake)
-	message(STATUS "clang-tidy подключен")
+	message(STATUS "clang-tidy ON")
 endif()
 
-if(TESTING)
-	add_subdirectory(tests)
-	message(STATUS "Тестирование включено")
+if(FORMAT)
+	file(GLOB_RECURSE ALL_SOURCE_FILES *.cpp *.hpp)
+	add_custom_target(
+		format
+		COMMAND clang-format
+		-style=file
+		-i
+		${ALL_SOURCE_FILES}
+	)
+	message(STATUS "clang-format ON")
 endif()
 
-if(BENCHMARK)
-	add_subdirectory(bench)
-	message(STATUS "Бенчмарк подключен")
-endif()
+
+add_subdirectory(tests)
+add_subdirectory(bench)
