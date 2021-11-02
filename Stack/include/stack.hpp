@@ -7,78 +7,78 @@ namespace stack
 template <class T>
 class Stack
 {
-    public:
-    const size_t START_SIZE = 32;
+	public:
+	const size_t START_SIZE = 32;
 
-    Stack();
-    explicit Stack(size_t size);
-    Stack(const Stack &other);
-    Stack(Stack &&other);
-    ~Stack();
+	Stack();
+	explicit Stack(size_t size);
+	Stack(const Stack &other);
+	Stack(Stack &&other);
+	~Stack();
 
-    Stack &operator=(const Stack &other);
-    Stack &operator=(Stack &&other);
+	Stack &operator=(const Stack &other);
+	Stack &operator=(Stack &&other);
 
-    void push(T n);
-    void pop();
+	void push(T n);
+	void pop();
 
-    void info() const;
-    size_t max_size() const;
-    size_t size() const;
-    T &top();
-    const T &top() const;
+	void info() const;
+	size_t max_size() const;
+	size_t size() const;
+	T &top();
+	const T &top() const;
 
-    void swap(Stack &other);
+	void swap(Stack &other);
 
-    bool operator==(const Stack &other) const;
-    bool operator!=(const Stack &other) const;
+	bool operator==(const Stack &other) const;
+	bool operator!=(const Stack &other) const;
 
-    void expand();
+	void expand();
 
-    void change_memory_mult(double mult);
+	void change_memory_mult(double mult);
 
-    private:
-    double kmult_ = 2;
-    T *data_;
-    size_t size_;
-    size_t cur_;
+	private:
+	double kmult_ = 2;
+	T *data_;
+	size_t size_;
+	size_t cur_;
 };
 
 template <>
 class Stack<bool>
 {
-    public:
-    const size_t START_SIZE = 8;
+	public:
+	const size_t START_SIZE = 8;
 
-    Stack();
-    explicit Stack(size_t size);
-    Stack(const Stack &other);
-    Stack(Stack &&other);
-    ~Stack();
+	Stack();
+	explicit Stack(size_t size);
+	Stack(const Stack &other);
+	Stack(Stack &&other);
+	~Stack();
 
-    Stack &operator=(const Stack &other);
-    Stack &operator=(Stack &&other);
+	Stack &operator=(const Stack &other);
+	Stack &operator=(Stack &&other);
 
-    void push(bool n);
-    void pop();
+	void push(bool n);
+	void pop();
 
-    void info() const;
-    size_t max_size() const;
-    size_t size() const;
-    bool top() const;
+	void info() const;
+	size_t max_size() const;
+	size_t size() const;
+	bool top() const;
 
-    void swap(Stack &other);
+	void swap(Stack &other);
 
-    bool operator==(const Stack &other) const;
-    bool operator!=(const Stack &other) const;
+	bool operator==(const Stack &other) const;
+	bool operator!=(const Stack &other) const;
 
-    void expand();
+	void expand();
 
-    private:
-    double kmult_ = 2;
-    unsigned char *data_;
-    size_t size_;
-    size_t cur_;
+	private:
+	double kmult_ = 2;
+	unsigned char *data_;
+	size_t size_;
+	size_t cur_;
 };
 }  // namespace stack
 #endif  // STACK_SORCE_STACK_HPP
