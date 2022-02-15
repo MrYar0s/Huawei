@@ -112,9 +112,7 @@ TEST(DoubleQueueTest, CopyConstructorTest)
 Queue<double> queue_for_double_move_constructor()
 {
         Queue<double> qu;
-	std::cout << "Start size" << qu.size();
 	qu.push(241.23);
-	std::cout << "End size" << qu.size();
         return qu;
 }
 
