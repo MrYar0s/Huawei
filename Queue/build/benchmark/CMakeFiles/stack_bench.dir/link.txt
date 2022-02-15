@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/stack_bench.dir/queue_stack_bench.cpp.o  -o stack_bench  /usr/lib/x86_64-linux-gnu/libbenchmark.so.1.5.0 -pthread /usr/lib/x86_64-linux-gnu/librt.so 

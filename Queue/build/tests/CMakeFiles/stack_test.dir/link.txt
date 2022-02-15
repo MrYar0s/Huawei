@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/stack_test.dir/gtest.cpp.o  -o stack_test  /usr/lib/x86_64-linux-gnu/libgtest_main.a /usr/lib/x86_64-linux-gnu/libgtest.a -lpthread 
