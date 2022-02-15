@@ -111,6 +111,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+tests/CMakeFiles/run_list_test.dir/rule:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/run_list_test.dir/rule
+.PHONY : tests/CMakeFiles/run_list_test.dir/rule
+
+# Convenience name for target.
+run_list_test: tests/CMakeFiles/run_list_test.dir/rule
+
+.PHONY : run_list_test
+
+# fast build rule for target.
+run_list_test/fast:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/run_list_test.dir/build.make tests/CMakeFiles/run_list_test.dir/build
+.PHONY : run_list_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/list_test.dir/rule:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/list_test.dir/rule
+.PHONY : tests/CMakeFiles/list_test.dir/rule
+
+# Convenience name for target.
+list_test: tests/CMakeFiles/list_test.dir/rule
+
+.PHONY : list_test
+
+# fast build rule for target.
+list_test/fast:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/list_test.dir/build.make tests/CMakeFiles/list_test.dir/build
+.PHONY : list_test/fast
+
+# Convenience name for target.
 tests/CMakeFiles/run_stack_test.dir/rule:
 	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/run_stack_test.dir/rule
 .PHONY : tests/CMakeFiles/run_stack_test.dir/rule
@@ -146,6 +176,7 @@ gtest.o: gtest.cpp.o
 
 # target to build an object file
 gtest.cpp.o:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/list_test.dir/build.make tests/CMakeFiles/list_test.dir/gtest.cpp.o
 	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/stack_test.dir/build.make tests/CMakeFiles/stack_test.dir/gtest.cpp.o
 .PHONY : gtest.cpp.o
 
@@ -155,6 +186,7 @@ gtest.i: gtest.cpp.i
 
 # target to preprocess a source file
 gtest.cpp.i:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/list_test.dir/build.make tests/CMakeFiles/list_test.dir/gtest.cpp.i
 	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/stack_test.dir/build.make tests/CMakeFiles/stack_test.dir/gtest.cpp.i
 .PHONY : gtest.cpp.i
 
@@ -164,6 +196,7 @@ gtest.s: gtest.cpp.s
 
 # target to generate assembly for a file
 gtest.cpp.s:
+	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/list_test.dir/build.make tests/CMakeFiles/list_test.dir/gtest.cpp.s
 	cd /home/mryaros/Huawei/Queue/build && $(MAKE) -f tests/CMakeFiles/stack_test.dir/build.make tests/CMakeFiles/stack_test.dir/gtest.cpp.s
 .PHONY : gtest.cpp.s
 
@@ -175,6 +208,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... run_list_test"
+	@echo "... list_test"
 	@echo "... run_stack_test"
 	@echo "... stack_test"
 	@echo "... gtest.o"

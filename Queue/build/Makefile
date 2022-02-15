@@ -124,6 +124,71 @@ format/fast:
 .PHONY : format/fast
 
 #=============================================================================
+# Target rules for targets named run_bench
+
+# Build rule for target.
+run_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_bench
+.PHONY : run_bench
+
+# fast build rule for target.
+run_bench/fast:
+	$(MAKE) -f benchmark/CMakeFiles/run_bench.dir/build.make benchmark/CMakeFiles/run_bench.dir/build
+.PHONY : run_bench/fast
+
+#=============================================================================
+# Target rules for targets named list_bench
+
+# Build rule for target.
+list_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 list_bench
+.PHONY : list_bench
+
+# fast build rule for target.
+list_bench/fast:
+	$(MAKE) -f benchmark/CMakeFiles/list_bench.dir/build.make benchmark/CMakeFiles/list_bench.dir/build
+.PHONY : list_bench/fast
+
+#=============================================================================
+# Target rules for targets named stack_bench
+
+# Build rule for target.
+stack_bench: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 stack_bench
+.PHONY : stack_bench
+
+# fast build rule for target.
+stack_bench/fast:
+	$(MAKE) -f benchmark/CMakeFiles/stack_bench.dir/build.make benchmark/CMakeFiles/stack_bench.dir/build
+.PHONY : stack_bench/fast
+
+#=============================================================================
+# Target rules for targets named run_list_test
+
+# Build rule for target.
+run_list_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_list_test
+.PHONY : run_list_test
+
+# fast build rule for target.
+run_list_test/fast:
+	$(MAKE) -f tests/CMakeFiles/run_list_test.dir/build.make tests/CMakeFiles/run_list_test.dir/build
+.PHONY : run_list_test/fast
+
+#=============================================================================
+# Target rules for targets named list_test
+
+# Build rule for target.
+list_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 list_test
+.PHONY : list_test
+
+# fast build rule for target.
+list_test/fast:
+	$(MAKE) -f tests/CMakeFiles/list_test.dir/build.make tests/CMakeFiles/list_test.dir/build
+.PHONY : list_test/fast
+
+#=============================================================================
 # Target rules for targets named run_stack_test
 
 # Build rule for target.
@@ -158,6 +223,11 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... format"
+	@echo "... run_bench"
+	@echo "... list_bench"
+	@echo "... stack_bench"
+	@echo "... run_list_test"
+	@echo "... list_test"
 	@echo "... run_stack_test"
 	@echo "... stack_test"
 .PHONY : help

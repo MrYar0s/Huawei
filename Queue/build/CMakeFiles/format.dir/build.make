@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/mryaros/Huawei/Queue/build
 include CMakeFiles/format.dir/progress.make
 
 CMakeFiles/format:
-	clang-format -style=file -i /home/mryaros/Huawei/Queue/build/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp /home/mryaros/Huawei/Queue/list_version/include/queue.hpp /home/mryaros/Huawei/Queue/list_version/include/queue_impl.hpp /home/mryaros/Huawei/Queue/stack_version/include/queue.hpp /home/mryaros/Huawei/Queue/stack_version/include/queue_impl.hpp /home/mryaros/Huawei/Queue/tests/gtest.cpp
+	clang-format -style=file -i /home/mryaros/Huawei/Queue/benchmark/queue_list_bench.cpp /home/mryaros/Huawei/Queue/benchmark/queue_stack_bench.cpp /home/mryaros/Huawei/Queue/benchmark/stack_bench.hpp /home/mryaros/Huawei/Queue/build/CMakeFiles/3.16.3/CompilerIdCXX/CMakeCXXCompilerId.cpp /home/mryaros/Huawei/Queue/list_version/include/queue.hpp /home/mryaros/Huawei/Queue/list_version/include/queue_impl.hpp /home/mryaros/Huawei/Queue/stack_version/include/queue.hpp /home/mryaros/Huawei/Queue/stack_version/include/queue_impl.hpp /home/mryaros/Huawei/Queue/tests/gtest.cpp
 
 format: CMakeFiles/format
 format: CMakeFiles/format.dir/build.make

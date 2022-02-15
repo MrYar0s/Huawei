@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mryaros/Huawei/Queue/list_version/include/queue.hpp
+cstdlib
+-
+
+/home/mryaros/Huawei/Queue/list_version/include/queue_impl.hpp
+queue.hpp
+/home/mryaros/Huawei/Queue/list_version/include/queue.hpp
+iostream
+-
+
+/home/mryaros/Huawei/Queue/stack_version/include/queue_impl.hpp
+queue.hpp
+/home/mryaros/Huawei/Queue/stack_version/include/queue.hpp
+
+/home/mryaros/Huawei/Queue/tests/gtest.cpp
+../list_version/include/queue_impl.hpp
+/home/mryaros/Huawei/Queue/list_version/include/queue_impl.hpp
+../stack_version/include/queue_impl.hpp
+/home/mryaros/Huawei/Queue/stack_version/include/queue_impl.hpp
+gtest/gtest.h
+-
+
