@@ -1,0 +1,7 @@
+/home/mryaros/Huawei/Queue/build/CMakeFiles/rebuild_cache.dir
+/home/mryaros/Huawei/Queue/build/CMakeFiles/edit_cache.dir
+/home/mryaros/Huawei/Queue/build/CMakeFiles/format.dir
+/home/mryaros/Huawei/Queue/build/tests/CMakeFiles/rebuild_cache.dir
+/home/mryaros/Huawei/Queue/build/tests/CMakeFiles/edit_cache.dir
+/home/mryaros/Huawei/Queue/build/tests/CMakeFiles/run_stack_test.dir
+/home/mryaros/Huawei/Queue/build/tests/CMakeFiles/stack_test.dir
