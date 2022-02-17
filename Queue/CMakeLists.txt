@@ -10,17 +10,11 @@ add_compile_options(-Wall -Werror)
 option(TIDY "Enable clang-tidy" ON)
 option(FORMAT "Enable clang-format" ON)
 
-set(APP_INCLUDES include)
-
-add_library(stack INTERFACE)
-
-target_include_directories(stack INTERFACE ${APP_INCLUDES})
-
 if(TIDY)
 	set(CMAKE_CXX_CLANG_TIDY
 		clang-tidy;
 		--format-style=file;
-		--header-filter=.*;
+		--header-filter=*.hpp;
 	)
 	message(STATUS "clang-tidy ON")
 endif()
@@ -37,10 +31,5 @@ if(FORMAT)
 	message(STATUS "clang-format ON")
 endif()
 
-if(BENCHMARK)
-	add_subdirectory(benchmark)
-endif()
-
-if(QUEUE_STACK OR QUEUE_LIST)
-	add_subdirectory(tests)
-endif()
+add_subdirectory(queue)
+add_subdirectory(stack)

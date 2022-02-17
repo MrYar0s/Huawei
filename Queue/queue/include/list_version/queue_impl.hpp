@@ -1,28 +1,31 @@
 #ifndef QUEUE_LIST_VERSION_INCLUDE_QUEUE_IMPL_HPP
 #define QUEUE_LIST_VERSION_INCLUDE_QUEUE_IMPL_HPP
 
-#include "queue.hpp"
 #include <iostream>
+
+#include "queue.hpp"
 
 namespace queue_list
 {
 template <class T>
-Queue<T>::Queue() : front_(), back_() {}
+Queue<T>::Queue() : front_(), back_()
+{
+}
 
 template <class T>
-Queue<T>::Queue(const Queue &other) : size_(other.size_)
+Queue<T>::Queue(const Queue& other) : size_(other.size_)
 {
-	if(!is_empty())
+	if (!is_empty())
 	{
-		front_ = new Node {};
+		front_ = new Node{};
 
 		Node* cur_node = front_;
 		Node* cur_other_node = other.front_;
 
 		cur_node->data_ = cur_other_node->data_;
-		for(size_t i = 1; i < size_; i++)
+		for (size_t i = 1; i < size_; i++)
 		{
-			cur_node->next_ = new Node {};
+			cur_node->next_ = new Node{};
 
 			cur_node = cur_node->next_;
 			cur_other_node = cur_other_node->next_;
@@ -34,7 +37,8 @@ Queue<T>::Queue(const Queue &other) : size_(other.size_)
 }
 
 template <class T>
-Queue<T>::Queue(Queue &&other) noexcept : size_(other.size_), front_(other.front_), back_(other.back_)
+Queue<T>::Queue(Queue&& other) noexcept
+    : size_(other.size_), front_(other.front_), back_(other.back_)
 {
 	other.size_ = 0;
 	other.front_ = nullptr;
@@ -48,9 +52,9 @@ Queue<T>::~Queue()
 }
 
 template <class T>
-Queue<T>& Queue<T>::operator=(const Queue &other)
+Queue<T>& Queue<T>::operator=(const Queue& other)
 {
-	if(this == &other)
+	if (this == &other)
 	{
 		return *this;
 	}
@@ -58,18 +62,18 @@ Queue<T>& Queue<T>::operator=(const Queue &other)
 	delete_nodes();
 	size_ = other.size_;
 
-	if(!is_empty())
+	if (!is_empty())
 	{
-		front_ = new Node {};
+		front_ = new Node{};
 
 		Node* cur_node = front_;
 		Node* cur_other_node = other.front_;
 
 		cur_node->data_ = cur_other_node->data_;
 
-		for(size_t i = 1; i < size_; i++)
+		for (size_t i = 1; i < size_; i++)
 		{
-			cur_node->next_ = new Node {};
+			cur_node->next_ = new Node{};
 
 			cur_node = cur_node->next_;
 			cur_other_node = cur_other_node->next_;
@@ -87,9 +91,9 @@ Queue<T>& Queue<T>::operator=(const Queue &other)
 }
 
 template <class T>
-Queue<T>& Queue<T>::operator=(Queue &&other) noexcept
+Queue<T>& Queue<T>::operator=(Queue&& other) noexcept
 {
-	if(this == &other)
+	if (this == &other)
 	{
 		return *this;
 	}
@@ -109,15 +113,15 @@ Queue<T>& Queue<T>::operator=(Queue &&other) noexcept
 template <class T>
 bool Queue<T>::operator==(const Queue& other) const
 {
-	if(this == &other)
+	if (this == &other)
 	{
 		return true;
 	}
-	if(is_empty() && other.is_empty())
+	if (is_empty() && other.is_empty())
 	{
 		return true;
 	}
-	if(size() != other.size())
+	if (size() != other.size())
 	{
 		return false;
 	}
@@ -125,21 +129,21 @@ bool Queue<T>::operator==(const Queue& other) const
 	Node* cur_node = front_;
 	Node* cur_other_node = other.front_;
 
-	for(size_t i = 0; i < size_; i++)
+	for (size_t i = 0; i < size_; i++)
 	{
-		if(cur_node->data_ != cur_other_node->data_)
+		if (cur_node->data_ != cur_other_node->data_)
 		{
 			return false;
 		}
 		cur_node = cur_node->next_;
 		cur_other_node = cur_other_node->next_;
 	}
-	
+
 	return true;
 }
 
 template <class T>
-bool Queue<T>::operator!=(const Queue &other) const
+bool Queue<T>::operator!=(const Queue& other) const
 {
 	return !(*this == other);
 }
@@ -183,14 +187,14 @@ T& Queue<T>::front()
 template <class T>
 void Queue<T>::push(const T& val)
 {
-	if(!is_empty())
+	if (!is_empty())
 	{
-		back_->next_ = new Node {};
+		back_->next_ = new Node{};
 		back_ = back_->next_;
 	}
 	else
 	{
-		front_ = new Node {};
+		front_ = new Node{};
 		back_ = front_;
 	}
 	back_->data_ = val;
@@ -200,9 +204,9 @@ void Queue<T>::push(const T& val)
 template <class T>
 void Queue<T>::pop()
 {
-	if(!is_empty())
+	if (!is_empty())
 	{
-		if(size_ == 1)
+		if (size_ == 1)
 		{
 			delete front_;
 			front_ = nullptr;
@@ -219,7 +223,7 @@ void Queue<T>::pop()
 	}
 	else
 	{
-		std::cerr << "POP error" <<std::endl;
+		std::cerr << "POP error" << std::endl;
 	}
 }
 
@@ -229,7 +233,7 @@ void Queue<T>::delete_nodes()
 	Node* cur_node = front_;
 	Node* next_node = nullptr;
 
-	for(size_t i = 0; i < size_; i++)
+	for (size_t i = 0; i < size_; i++)
 	{
 		next_node = cur_node->next_;
 		delete cur_node;
@@ -237,6 +241,6 @@ void Queue<T>::delete_nodes()
 	}
 }
 
-}//namespace queue_list
+}  // namespace queue_list
 
-#endif//QUEUE_LIST_VERSION_INCLUDE_QUEUE_IMPL_HPP
+#endif  // QUEUE_LIST_VERSION_INCLUDE_QUEUE_IMPL_HPP

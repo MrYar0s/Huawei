@@ -5,21 +5,20 @@
 
 namespace queue_list
 {
-
 template <class T>
 class Queue
 {
-public:
+	public:
 	Queue();
-	Queue(const Queue &other);
-	Queue(Queue &&other) noexcept;
+	Queue(const Queue& other);
+	Queue(Queue&& other) noexcept;
 	~Queue();
 
-	Queue &operator=(const Queue &other);
-	Queue &operator=(Queue &&other) noexcept;
+	Queue& operator=(const Queue& other);
+	Queue& operator=(Queue&& other) noexcept;
 
-	bool operator==(const Queue &other) const;
-	bool operator!=(const Queue &other) const;
+	bool operator==(const Queue& other) const;
+	bool operator!=(const Queue& other) const;
 
 	void push(const T& val);
 	void pop();
@@ -32,7 +31,8 @@ public:
 
 	bool is_empty() const;
 	size_t size() const;
-private:
+
+	private:
 	struct Node
 	{
 		T data_;
@@ -44,8 +44,6 @@ private:
 
 	void delete_nodes();
 };
-}//namespace queue_list
+}  // namespace queue_list
 
-
-
-#endif //QUEUE_LIST_VERSION_INCLUDE_QUEUE_HPP
+#endif  // QUEUE_LIST_VERSION_INCLUDE_QUEUE_HPP

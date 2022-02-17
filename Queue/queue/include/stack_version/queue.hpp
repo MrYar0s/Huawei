@@ -1,16 +1,16 @@
 #ifndef QUEUE_STACK_VERSION_INCLUDE_QUEUE_HPP
 #define QUEUE_STACK_VERSION_INCLUDE_QUEUE_HPP
 
-#include "../../../Stack/include/stack-impl.hpp"
-
 #include <cstdlib>
+
+#include "stack-impl.hpp"
 
 namespace queue_stack
 {
 template <class T>
 class Queue
 {
-public:
+	public:
 	Queue() = default;
 	Queue(const Queue &other) = default;
 	Queue(Queue &&other) noexcept = default;
@@ -22,20 +22,21 @@ public:
 	bool operator==(const Queue &other) const;
 	bool operator!=(const Queue &other) const;
 
-	void push(const T& val);
+	void push(const T &val);
 	void pop();
 
-	const T& front() const;
-	T& front();
+	const T &front() const;
+	T &front();
 
 	bool is_empty() const;
 	size_t size() const;
-private:
-	stack::Stack<T> input_stack_ {};
-	stack::Stack<T> output_stack_ {};
+
+	private:
+	stack::Stack<T> input_stack_{};
+	stack::Stack<T> output_stack_{};
 
 	void refresh();
 };
-}//namespace queue_stack
+}  // namespace queue_stack
 
-#endif //QUEUE_STACK_VERSION_INCLUDE_QUEUE_HPP
+#endif  // QUEUE_STACK_VERSION_INCLUDE_QUEUE_HPP
