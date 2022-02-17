@@ -11,6 +11,7 @@
 
 namespace stack
 {
+
 template <class T>
 Stack<T>::Stack()
 {
@@ -33,7 +34,7 @@ Stack<T>::Stack(const Stack &other)
 	size_ = other.size_;
 	data_ = new T[size_];
 	cur_ = other.cur_;
-	for (size_t i = 0; i < size_; i++)
+	for (size_t i = 0; i < cur_; i++)
 	{
 		data_[i] = other.data_[i];
 	}
@@ -105,6 +106,12 @@ void Stack<T>::push(T n)
 }
 
 template <class T>
+bool Stack<T>::is_empty() const
+{
+	return cur_ == 0;
+}
+
+template <class T>
 void Stack<T>::pop()
 {
 	cur_--;
@@ -151,6 +158,10 @@ bool Stack<T>::operator==(const Stack &other) const
 	if (cur_ != other.cur_)
 	{
 		return false;
+	}
+	if(is_empty() && other.is_empty())
+	{
+		return true;
 	}
 	for (size_t i = 0; i < cur_; ++i)
 	{

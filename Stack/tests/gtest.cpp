@@ -222,6 +222,13 @@ TEST(StackTestBool, PushPopFunc)
 	}
 }
 
+TEST(StackTestInt, TopFunc)
+{
+	stack::Stack<int> stack_i;
+	stack_i.push(24);
+	EXPECT_EQ(24, stack_i.top());
+}
+
 int main(int argc, char *argv[])
 {
 	::testing::InitGoogleTest(&argc, argv);

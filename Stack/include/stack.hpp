@@ -25,6 +25,7 @@ class Stack
 	void info() const;
 	size_t max_size() const;
 	size_t size() const;
+	bool is_empty() const;
 	T &top();
 	const T &top() const;
 
