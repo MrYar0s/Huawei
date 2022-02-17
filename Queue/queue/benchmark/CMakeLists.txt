@@ -18,7 +18,5 @@ add_custom_target(run_list_bench
 		  COMMAND ./${LIST_BENCH})
 
 add_custom_target(run_bench
-		  COMMENT "Running all benchmarks"
-		  COMMAND ./${STACK_BENCH}
-		  COMMAND ./${LIST_BENCH})
-add_dependencies(run_bench ${STACK_BENCH} ${LIST_BENCH})
+		  COMMENT "Running all benchmarks")
+add_dependencies(run_bench run_stack_bench run_list_bench)
