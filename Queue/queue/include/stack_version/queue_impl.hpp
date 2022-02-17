@@ -124,4 +124,4 @@ void Queue<T>::refresh()
 }
 
 }  // namespace queue_stack
-#endif  //QUEUE_INCLUDE_STACK_VERSION_QUEUE_IMPL_HPP
+#endif  // QUEUE_INCLUDE_STACK_VERSION_QUEUE_IMPL_HPP

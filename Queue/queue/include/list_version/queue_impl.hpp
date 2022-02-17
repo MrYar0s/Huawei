@@ -243,4 +243,4 @@ void Queue<T>::delete_nodes()
 
 }  // namespace queue_list
 
-#endif  //QUEUE_INCLUDE_LIST_VERSION_QUEUE_IMPL_HPP
+#endif  // QUEUE_INCLUDE_LIST_VERSION_QUEUE_IMPL_HPP

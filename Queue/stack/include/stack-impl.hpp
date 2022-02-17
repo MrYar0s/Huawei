@@ -11,7 +11,6 @@
 
 namespace stack
 {
-
 template <class T>
 Stack<T>::Stack()
 {
@@ -159,7 +158,7 @@ bool Stack<T>::operator==(const Stack &other) const
 	{
 		return false;
 	}
-	if(is_empty() && other.is_empty())
+	if (is_empty() && other.is_empty())
 	{
 		return true;
 	}
