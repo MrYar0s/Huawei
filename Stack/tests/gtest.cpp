@@ -3,7 +3,7 @@
 #include "stack-impl.hpp"
 #include "stack.hpp"
 
-const static int kMaxAmount = 2151522;
+const static int kMaxAmount = 1e6;
 
 TEST(StackTest, IsEmptyInitially)
 {
@@ -23,10 +23,10 @@ TEST(StackTest, IsEmptyInitially)
 
 TEST(StackTest, IsSizeInitially)
 {
-	size_t maxi = 187912;
-	size_t maxd = 7529;
-	size_t maxc = 92412;
-	size_t maxb = 9521643;
+	size_t maxi = kMaxAmount;
+	size_t maxd = kMaxAmount;
+	size_t maxc = kMaxAmount;
+	size_t maxb = kMaxAmount;
 	stack::Stack<int> st_i(maxi);
 	stack::Stack<double> st_d(maxd);
 	stack::Stack<char> st_c(maxc);
@@ -43,10 +43,10 @@ TEST(StackTest, IsSizeInitially)
 
 TEST(StackTest, IsOtherInitially)
 {
-	size_t maxi = 187912;
-	size_t maxd = 7529;
-	size_t maxc = 92412;
-	size_t maxb = 4126433;
+	size_t maxi = kMaxAmount;
+	size_t maxd = kMaxAmount;
+	size_t maxc = kMaxAmount;
+	size_t maxb = kMaxAmount;
 	stack::Stack<int> st_i(maxi);
 	stack::Stack<double> st_d(maxd);
 	stack::Stack<char> st_c(maxc);
@@ -67,7 +67,7 @@ TEST(StackTest, IsOtherInitially)
 
 TEST(StackTest, IsEqualOperator)
 {
-	size_t size = 5162346;
+	size_t size = kMaxAmount;
 	stack::Stack<int> a_stack_i(size);
 	stack::Stack<int> b_stack_i(size);
 	for (size_t i = 0; i < size; i++)
@@ -77,42 +77,42 @@ TEST(StackTest, IsEqualOperator)
 	}
 	EXPECT_EQ(true, a_stack_i == b_stack_i);
 	b_stack_i.pop();
-	b_stack_i.push(-1);
+	b_stack_i.push(rand()%kMaxAmount));
 	EXPECT_EQ(false, a_stack_i == b_stack_i);
 	stack::Stack<double> a_stack_d(size);
 	stack::Stack<double> b_stack_d(size);
-	double x = 0.3;
+	double x = static_cast<double>(rand()/kMaxAmount);
 	for (size_t i = 0; i < size; i++)
 	{
 		a_stack_d.push(x);
 		b_stack_d.push(x);
-		x *= 1.4;
+		x = static_cast<double>(rand()/kMaxAmount);
 	}
 	EXPECT_EQ(true, a_stack_d == b_stack_d);
 	b_stack_d.pop();
-	b_stack_d.push(-1.45);
+	b_stack_d.push(static_cast<double>(rand()/kMaxAmount));
 	EXPECT_EQ(false, a_stack_d == b_stack_d);
 	stack::Stack<char> a_stack_c(size);
 	stack::Stack<char> b_stack_c(size);
-	char c = 'b';
+	char c = static_cast<char>(rand()%256);
 	for (size_t i = 0; i < size; i++)
 	{
 		a_stack_c.push(c);
 		b_stack_c.push(c);
-		c += 2;
+		c = static_cast<char>(rand()%256);
 	}
 	EXPECT_EQ(true, a_stack_c == b_stack_c);
 	b_stack_c.pop();
-	b_stack_c.push('a');
+	b_stack_c.push(static_cast<char>(rand()%256));
 	EXPECT_EQ(false, a_stack_c == b_stack_c);
 	stack::Stack<bool> a_stack_b(size);
 	stack::Stack<bool> b_stack_b(size);
-	bool b = true;
+	bool b = static_cast<bool>(rand()%2);
 	for (size_t i = 0; i < size; i++)
 	{
 		a_stack_b.push(b);
 		b_stack_b.push(b);
-		b = !b;
+		b = static_cast<bool>(rand()%2);
 	}
 	EXPECT_EQ(true, a_stack_b == b_stack_b);
 	b_stack_b.pop();
@@ -121,24 +121,24 @@ TEST(StackTest, IsEqualOperator)
 
 TEST(StackTest, EqualOperator)
 {
-	size_t size = 6347584;
+	size_t size = kMaxAmount;
 	stack::Stack<int> a_stack_i(size);
-	a_stack_i.push(6347251);
+	a_stack_i.push(rand()%kMaxAmount);
 	stack::Stack<int> b_stack_i;
 	b_stack_i = a_stack_i;
 	EXPECT_EQ(true, b_stack_i == a_stack_i);
 	stack::Stack<double> a_stack_d(size);
-	a_stack_d.push(-532.241);
+	a_stack_d.push(static_cast<double>(rand()/kMaxAmount));
 	stack::Stack<double> b_stack_d;
 	b_stack_d = a_stack_d;
 	EXPECT_EQ(true, b_stack_d == a_stack_d);
 	stack::Stack<char> a_stack_c(size);
-	a_stack_c.push('F');
+	a_stack_c.push(static_cast<char>(rand()%256));
 	stack::Stack<char> b_stack_c;
 	b_stack_c = a_stack_c;
 	EXPECT_EQ(true, b_stack_c == a_stack_c);
 	stack::Stack<bool> a_stack_b(size);
-	a_stack_b.push(false);
+	a_stack_b.push(static_cast<bool>(rand()%2));
 	stack::Stack<bool> b_stack_b;
 	b_stack_b = a_stack_b;
 	EXPECT_EQ(true, b_stack_b == a_stack_b);
@@ -166,7 +166,7 @@ TEST(StackTestDouble, PushPopFunc)
 	for (int i = 0; i < kMaxAmount; i++)
 	{
 		values.push_back(d);
-		d *= -1.45;
+		d = static_cast<double>(rand()/kMaxAmount);
 	}
 	for (int i = 0; i < kMaxAmount; i++)
 	{
@@ -183,11 +183,11 @@ TEST(StackTestChar, PushPopFunc)
 {
 	stack::Stack<char> stack_c;
 	std::vector<char> values;
-	char j = 'c';
+	char j = static_cast<char>(rand()%256);
 	for (int i = 0; i < kMaxAmount; i++)
 	{
 		values.push_back(j);
-		j += 2;
+		j = static_cast<char>(rand()%256);
 	}
 	for (int i = 0; i < kMaxAmount; i++)
 	{
@@ -204,11 +204,11 @@ TEST(StackTestBool, PushPopFunc)
 {
 	stack::Stack<bool> stack_b;
 	std::vector<bool> values;
-	bool k = true;
+	bool k = false;
 	for (int i = 0; i < kMaxAmount; i++)
 	{
 		values.push_back(k);
-		k = !k;
+		k = static_cast<bool>(rand()%2);
 	}
 	for (int i = 0; i < kMaxAmount; i++)
 	{
@@ -225,8 +225,9 @@ TEST(StackTestBool, PushPopFunc)
 TEST(StackTestInt, TopFunc)
 {
 	stack::Stack<int> stack_i;
-	stack_i.push(24);
-	EXPECT_EQ(24, stack_i.top());
+	int value = rand()%kMaxAmount
+	stack_i.push(value);
+	EXPECT_EQ(value, stack_i.top());
 }
 
 int main(int argc, char *argv[])
