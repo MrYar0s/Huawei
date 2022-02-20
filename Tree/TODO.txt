@@ -1,0 +1,26 @@
+Tree();	//DONE
+Tree(const Tree& other);	//DONE
+Tree(Tree&& other) noexcept;	//DONE
+~Tree();	//DONE
+
+Tree& operator=(const Tree& other);	//DONE
+Tree& operator=(Tree&& other) noexcept;	//DONE
+
+bool operator==(const Tree& other) const;	//DONE
+bool operator!=(const Tree& other) const;	//DONE
+
+Node_t* copy_tree(const Node_t* other, const Node_t* parent = nullptr);	//DONE
+bool check_tree(const Node_t* root, const Node_t* other_root) const;	//DONE
+
+bool is_empty() const;	//DONE
+
+void insert(const Node_t* node);	//DONE
+void insert(const T& value);	//DONE
+void balance_insert(const Node_t* node);	//DONE
+
+const T& get(const Node_t* node) const;	//DONE
+T& get(const Node_t* node);	//DONE
+
+void rotate_left(const Node_t* node);	//DONE
+void rotate_right(const Node_t* node);	//DONE
+void delete_tree();	//DONE

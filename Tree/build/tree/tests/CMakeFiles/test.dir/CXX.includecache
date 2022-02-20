@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../tree/include/tree.hpp
+cstdlib
+-
+
+../tree/include/tree_impl.hpp
+algorithm
+-
+utility
+-
+tree.hpp
+../tree/include/tree.hpp
+
+/home/mryaros/Huawei/Tree/tree/tests/gtest.cpp
+gtest/gtest.h
+-
+ctime
+-
+tree_impl.hpp
+/home/mryaros/Huawei/Tree/tree/tests/tree_impl.hpp
+

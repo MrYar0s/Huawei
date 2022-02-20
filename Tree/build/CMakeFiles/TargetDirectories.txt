@@ -1,0 +1,9 @@
+/home/mryaros/Huawei/Tree/build/CMakeFiles/rebuild_cache.dir
+/home/mryaros/Huawei/Tree/build/CMakeFiles/edit_cache.dir
+/home/mryaros/Huawei/Tree/build/CMakeFiles/format.dir
+/home/mryaros/Huawei/Tree/build/tree/CMakeFiles/rebuild_cache.dir
+/home/mryaros/Huawei/Tree/build/tree/CMakeFiles/edit_cache.dir
+/home/mryaros/Huawei/Tree/build/tree/tests/CMakeFiles/rebuild_cache.dir
+/home/mryaros/Huawei/Tree/build/tree/tests/CMakeFiles/run_test.dir
+/home/mryaros/Huawei/Tree/build/tree/tests/CMakeFiles/edit_cache.dir
+/home/mryaros/Huawei/Tree/build/tree/tests/CMakeFiles/test.dir
